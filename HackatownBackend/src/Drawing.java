@@ -16,6 +16,7 @@ public class Drawing extends Canvas {
         frame.add(canvas);
         frame.pack();
         frame.setVisible(true);
+        System.out.println("End of execution");
     }
 
     // Draws the map of montreal
@@ -33,6 +34,7 @@ public class Drawing extends Canvas {
                 if(!uniqueRoads.contains(r)) uniqueRoads.add(r);
         }
         g2.translate(-76, 42);
+        g2.drawString("Hallo", 30, 44);
 
         // Draw each road on the map. A road segment is represented by a line (p0, p1)
         for (Road r: uniqueRoads) {
