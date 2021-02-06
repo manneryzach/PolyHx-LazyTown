@@ -32,13 +32,19 @@ public class Carpool {
     }
 
     // Helper methods
-    private Road findClosestRoad(int userId) {
-        // TODO Fill in code for findClosestRoad
+    private Road findClosestVertex(int userId) {
+        // TODO Fill in code for findClosestVertex for userID
         return null;
     }
 
     private Double[][] findClosestVertex(Double[][] coord) {
-        // TODO Fill in code for findClosestVertex
+        // TODO Fill in code for findClosestVertex for coords
+        return null;
+    }
+
+    // Pruning process
+    private UserPairs getPossibleCombinations(ArrayList<Integer> userIDs) {
+        // TODO fill in code
         return null;
     }
 
