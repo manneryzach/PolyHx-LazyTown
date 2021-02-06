@@ -35,7 +35,6 @@ public class Carpool {
         return null;
     }
 
-
     // Helper methods
     private Point findClosestVertex(int userId) {
         return findClosestVertex(users.get(userId).coordA);
