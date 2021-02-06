@@ -38,7 +38,7 @@ public class MapBuilder {
 
                 for (Double[] elem : coords){
                     if (network.get(elem) == null){
-                        ArrayList<Road> hash_roads = new ArrayList<Road>();
+                        ArrayList<Road> hash_roads = new ArrayList<>();
                         hash_roads.add(road);
                         network.put(elem, hash_roads);
                     }else if(network.get(elem) != null){
