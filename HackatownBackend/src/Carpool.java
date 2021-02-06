@@ -41,15 +41,35 @@ public class Carpool {
         return findClosestVertex(users.get(userId).coordA);
     }
 
+    private double triangleMedian(Point A, Point B, Point C){
+        // Apollonius Theorem
+        double b = Point.eucDist(A, B);
+        double c = Point.eucDist(A, C);
+        double m = Point.eucDist(B, C)/2;
+        return (Math.sqrt((Math.pow(i,2)+Math.pow(i,2))/2) - Math.pow(m,2))
+    }
+
     private Point findClosestVertex(Point coord) {
-        // TODO Fill in code for findClosestVertex for coords
-        return null;
+        // Binary search
+        int L = 0;
+        int R = map.sortedCoordinates.size() - 1;
+        int m;
+        double c_norm = Point.eucNorm(coord);
+        while (L<=R){
+            m = (L+R)/2;
+            if (Point.eucNorm(map.sortedCoordinate(m)) < c_norm){
+                L = m + 1;
+            }else if (Point.eucNorm(map.sortedCoordinates(m)) > c_norm){
+                R = m - 1;
+            }else{
+                break;
+            }
+        }
+        return sortedCoordinates(m);
     }
 
     // Pruning process
     private ArrayList<UserPair> getPossibleCombinations(ArrayList<Integer> userIDs) {
-        // Fixme Changed user pair to contain users and not userIDs (line 108 broken)
-        // TODO fill in code
         // Separating drivers and passengers IDs
         ArrayList<Integer> driverIDs = new ArrayList<>();
         ArrayList<Integer> passengerIDs = new ArrayList<>();
@@ -58,7 +78,7 @@ public class Carpool {
 
         ArrayList<UserPair> pairs = new ArrayList<>();
 
-        for (int key : users.keySet()) {
+        for (int key : userIDs) {
             if (((users.get(key)).isPassenger) == true) {
                 passengerIDs.add(key);
             } else {
@@ -75,9 +95,15 @@ public class Carpool {
         int mB = 0;
         double pA_norm;
         double pB_norm;
+        point cA;
+        point cB;
+        int mA2 = 0;
+        int mB2 = 0;
         for (Integer p_key : passengerIDs) {
-            pA_norm = Point.eucNorm(users.get(p_key).coordA);
-            pB_norm = Point.eucNorm(users.get(p_key).coordB);
+            cA = findClosestVertex(users.get(p_key));
+            cB = findClosestVertex(users.get(p_key));
+            pA_norm = Point.eucNorm(cA);
+            pB_norm = Point.eucNorm(cB);
             for (Integer d_key : driverIDs) {
                 d_path = map.shortestPath(users.get(d_key).coordA, users.get(d_key).coordB);
                 Sorting.quickSort(d_path, 0, d_path.size() - 1);
@@ -108,7 +134,17 @@ public class Carpool {
                     }
                 }
                 // FIXME Make it an interval
-                if (Point.eucDist(users.get(p_key).coordA, d_path.get(mA)) < cutoff && Point.eucDist(users.get(p_key).coordB, d_path.get(mB)) < cutoff) {
+                if (Point.eucNorm(d_path(mA)) > pA_norm){
+                    mA2 = mA + 1;
+                }else{
+                    mA2 = mA - 1;
+                }
+                if (Point.eucNorm(d_path(mB)) > pA_norm){
+                    mB2 = mB + 1;
+                }else{
+                    mB2 = mB - 1;
+                }
+                if (triangleMedian(cA, d_path(mA),d_path(mA2)) < cutoff && triangleMedian(cB, d_path(mB), d_path(mB2)) < cutoff) {
                     pairs.add(new UserPair(users.get(p_key), users.get(d_key)));
                 }
             }
