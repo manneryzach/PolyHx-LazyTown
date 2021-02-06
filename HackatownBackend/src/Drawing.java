@@ -12,7 +12,7 @@ public class Drawing extends Canvas {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Map of montreal");
         Canvas canvas = new Drawing();
-        canvas.setSize(800, 800);
+        canvas.setSize(1920, 1080);
         frame.add(canvas);
         frame.pack();
         frame.setVisible(true);
@@ -20,6 +20,8 @@ public class Drawing extends Canvas {
 
     // Draws the map of montreal
     public void paint(Graphics g) {
+        System.out.println("Drawing");
+
         Graphics2D g2 = (Graphics2D) g;
         RoadNetwork map = new RoadNetwork("./data/routes.json");
         ArrayList<DataTypes.Point> coords = map.getSortedCoordinates();
@@ -30,6 +32,7 @@ public class Drawing extends Canvas {
             for (Road r : map.getRoad(p))
                 if(!uniqueRoads.contains(r)) uniqueRoads.add(r);
         }
+        g2.translate(-76, 42);
 
         // Draw each road on the map. A road segment is represented by a line (p0, p1)
         for (Road r: uniqueRoads) {
@@ -52,5 +55,6 @@ public class Drawing extends Canvas {
                 p0 = temp;
             }
         }
+        System.out.println("Done");
     }
 }

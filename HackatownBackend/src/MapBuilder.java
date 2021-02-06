@@ -20,8 +20,8 @@ public class MapBuilder {
 
             for (Object street : roads) {
                 JSONObject geometry = (JSONObject) ((JSONObject) street).get("geometry");
-                ArrayList<Double[]> coords = (ArrayList<Double[]>) geometry.get("coordinates");
-                System.out.println(coords);
+                JSONArray coords = (JSONArray) geometry.get("coordinates");
+                //System.out.println(coords.get(0) instanceof Double[]);
 
                 JSONObject properties = (JSONObject) ((JSONObject) street).get("properties");
 
@@ -43,8 +43,8 @@ public class MapBuilder {
                     // Update road coordinates in next for loop instead
                     Road road = new Road(name, direction, road_speed);
 
-                    for (Double[] elem : coords) {
-                        Point p = new Point(elem[0], elem[1]);
+                    for (Object elem : coords) {
+                        Point p = new Point((Double) ((JSONArray) elem).get(0), (Double) ((JSONArray) elem).get(1));
                         road.getCoordinates().add(p);
 
                         if (network.get(p) == null) {
