@@ -1,16 +1,19 @@
 package DataTypes;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Road {
     // FIELDS
     private String name;
-    private ArrayList<Point> coordinates;
+    private LinkedList<Point> coordinates;
+    private Point p0;
+    private Point p1;
     private long direction;
     private int roadSpeed;
 
     // Constructor
-    public Road(String name, ArrayList<Point> coordinates, long direction, int roadSpeed) {
+    public Road(String name, LinkedList<Point> coordinates, long direction, int roadSpeed) {
         this.name = name;
         this.coordinates = coordinates;
         this.direction = direction;
@@ -19,7 +22,7 @@ public class Road {
 
     public Road(String name, long direction, int roadSpeed) {
         this.name = name;
-        this.coordinates = new ArrayList<>();
+        this.coordinates = new LinkedList<>();
         this.direction = direction;
         this.roadSpeed = roadSpeed;
     }
@@ -29,7 +32,7 @@ public class Road {
         return name;
     }
 
-    public ArrayList<Point> getCoordinates() {
+    public LinkedList<Point> getCoordinates() {
         return coordinates;
     }
 
@@ -40,4 +43,14 @@ public class Road {
     public int getRoadSpeed() {
         return roadSpeed;
     }
+
+    public Point getNextRoad() {
+        return this.p1;
+    }
+
+    public Double getWeight() {
+        return Point.eucDist(p0, p1) / roadSpeed;
+    }
+
+
 }
