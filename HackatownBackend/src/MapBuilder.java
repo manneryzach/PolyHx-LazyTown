@@ -9,14 +9,14 @@ import java.text.ParseException;
 
 public class MapBuilder {
 
-    public static HashMap<Double[], ArrayList<Road>> parser(String file_path) throws Exception {
+    public static HashMap<Point, ArrayList<Road>> parser(String file_path) throws Exception {
         JSONParser parser = new JSONParser();
 
         try (Reader reader = new FileReader("./routes.json")) {
             JSONObject obj = (JSONObject) parser.parse(reader);
             JSONArray roads = (JSONArray) obj.get("features");
 
-            HashMap<Double[], ArrayList<Road>> network = new HashMap<>();
+            HashMap<Point, ArrayList<Road>> network = new HashMap<>();
 
             for (Object street : roads) {
                 JSONObject geometry = (JSONObject) ((JSONObject) street).get("geometry");
@@ -43,16 +43,14 @@ public class MapBuilder {
                     Road road = new Road(name, direction, road_speed);
 
                     for (Double[] elem : coords) {
+                        Point p = new Point(elem[0], elem[1]);
+                        road.getCoordinates().add(p);
 
-                        road.getCoordinates().add(new Point(elem[0], elem[1]));
-
-                        if (network.get(elem) == null) {
+                        if (network.get(p) == null) {
                             ArrayList<Road> hash_roads = new ArrayList<>();
                             hash_roads.add(road);
-                            network.put(elem, hash_roads);
-                        } else if (network.get(elem) != null) {
-                            network.get(elem).add(road);
-                        }
+                            network.put(p, hash_roads);
+                        } else network.get(p).add(road);
                     }
                 }
             }
