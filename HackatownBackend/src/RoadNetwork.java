@@ -11,6 +11,8 @@ public class RoadNetwork {
 
         ArrayList<Point> roadArray = (ArrayList<Point>) roads.keySet();
         Sorting.quickSort((ArrayList<Point>) roads.keySet(), 0, roadArray.size());
+
+        this.sortedRoads = roadArray;
     }
 
     // Accessors
