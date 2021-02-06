@@ -35,6 +35,7 @@ public class Carpool {
         return null;
     }
 
+
     // Helper methods
     private Point findClosestVertex(int userId) {
         return findClosestVertex(users.get(userId).coordA);
@@ -73,7 +74,7 @@ public class Carpool {
         ArrayList<Integer> driverIDs = new ArrayList<>();
         ArrayList<Integer> passengerIDs = new ArrayList<>();
 
-        double cutoff = 0.5; // Maybe wrong cutoff
+        double cutoff = 0.5; // TODO find right cutoff value
 
         ArrayList<UserPair> pairs = new ArrayList<>();
 
@@ -158,8 +159,8 @@ public class Carpool {
         Point pB = findClosestVertex(passenger.coordB);
 
         ArrayList<Point> route = map.shortestPath(driver.coordA, pA);
-        route.add(map.shortestPath(driver.coordA, pB));
-        route.add(map.shortestPath(pB, driver.coordB));
+        route.addAll(map.shortestPath(driver.coordA, pB));
+        route.addAll(map.shortestPath(pB, driver.coordB));
 
         double time_score = 0;
         double speed = 50;
