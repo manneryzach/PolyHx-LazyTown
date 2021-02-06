@@ -32,7 +32,7 @@ public class Carpool {
     }
 
     public UserPair findMatches() {
-        // TODO Fill in code for findMatches1
+        // TODO Fill in code for findMatches2
         return null;
     }
 
