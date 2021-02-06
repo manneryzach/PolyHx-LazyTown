@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 
 class HackatownTests extends Canvas{
 
-    @Test
     void pointSorting() {
         ArrayList<Point> points = new ArrayList<>();
 

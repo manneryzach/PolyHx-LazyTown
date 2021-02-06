@@ -36,7 +36,7 @@ public class Drawing extends Canvas {
         // Draw each road on the map. A road segment is represented by a line (p0, p1)
         for (Road r: uniqueRoads) {
             // Helps for visualization
-            g2.setColor(new Color(r.getRoadSpeed()));
+            g2.setColor(new Color(r.getRoadSpeed(), r.getRoadSpeed(), r.getRoadSpeed()));
 
             //
             Iterator iter = r.getCoordinates().iterator();
@@ -46,7 +46,7 @@ public class Drawing extends Canvas {
             while(iter.hasNext()) {
                 Point p0_trans = Point.transform(p0);
                 Point p1_trans = Point.transform(p1);
-                System.out.println("Plotting line from " + p0_trans + " to " + p1_trans);
+                System.out.println("Plotting line from " + p0_trans + " to " + p1_trans + " with speed " + r.getRoadSpeed());
                 Point2D point0 = new Point2D.Double(p0_trans.x, p0_trans.y);
                 Point2D point1 = new Point2D.Double(p1_trans.x, p1_trans.y);
                 g2.draw(new Line2D.Double(point0, point1));
