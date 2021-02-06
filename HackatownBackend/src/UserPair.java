@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class UserPair {
     public int passenger;
     public int driver;
-    ArrayList<Road> route;
+    ArrayList<Road> route; // TODO Change to ArrayList<Point>
 
     public UserPair(int passenger, int driver, ArrayList<Road> route) {
         this.passenger = passenger;
