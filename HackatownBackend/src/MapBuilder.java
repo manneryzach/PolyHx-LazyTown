@@ -22,7 +22,6 @@ public class MapBuilder {
                 JSONObject geometry = (JSONObject) ((JSONObject) street).get("geometry");
                 ArrayList<Double[]> coords = (ArrayList<Double[]>) geometry.get("coordinates");
 
-
                 JSONObject properties = (JSONObject) ((JSONObject) street).get("properties");
 
                 String hood = (String) properties.get("ARR_DRT");
@@ -40,9 +39,13 @@ public class MapBuilder {
                         road_speed = 25;
                     }
 
-                    Road road = new Road(name, coords, direction, road_speed);
+                    // Update road coordinates in next for loop instead
+                    Road road = new Road(name, direction, road_speed);
 
                     for (Double[] elem : coords) {
+
+                        road.getCoordinates().add(new Point(elem[0], elem[1]));
+
                         if (network.get(elem) == null) {
                             ArrayList<Road> hash_roads = new ArrayList<>();
                             hash_roads.add(road);
