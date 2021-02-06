@@ -10,7 +10,7 @@ public class RoadNetwork {
 
     }
 
-    /** accessors **/
+    /** Accessors **/
     public ArrayList<Road> getRoad(Double[] coordinates) {
         return roads.get(coordinates);
     }
