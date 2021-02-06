@@ -2,15 +2,15 @@ import java.util.*;
 
 public class RoadNetwork {
     // Fields
-    private HashMap<Double[], ArrayList<Road>> roads;
-    private ArrayList<Double[]> sortedRoads;
+    private HashMap<Point, ArrayList<Road>> roads;
+    private ArrayList<Point> sortedRoads;
 
     // Constructors
     public RoadNetwork(String JSONPath) throws Exception {
         this.roads = MapBuilder.parser(JSONPath);
 
-        ArrayList<Double[]> roadArray = (ArrayList<Double[]>) roads.keySet();
-        this.sortedRoads = Sorting.quickSort((ArrayList<Double[]>) roads.keySet(), 0, roadArray.size());
+        ArrayList<Point> roadArray = (ArrayList<Point>) roads.keySet();
+        Sorting.quickSort((ArrayList<Point>) roads.keySet(), 0, roadArray.size());
     }
 
     // Accessors
