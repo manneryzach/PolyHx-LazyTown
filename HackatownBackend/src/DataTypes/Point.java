@@ -24,6 +24,17 @@ public class Point implements Comparable {
         return Math.sqrt(Math.pow((p0.x - p1.x), 2) + Math.pow((p0.y - p1.y), 2));
     }
 
+    public static Point transform(Point p){
+        double x = p.y;
+        double y = p.x;
+        double scale_factor = 5;
+        x = x - (-73.55011);
+        y = y - (45.5123);
+        x = x*(108.6)*scale_factor;
+        y = (108.6*scale_factor*45.5123) - y*(108.6)*scale_factor;
+        return new Point(x, y);
+    }
+
     // returns <0 if this smaller than p, =0 if equal and >0 if bigger
     public int compareTo(Object o) {
         if (!(o instanceof Point))
