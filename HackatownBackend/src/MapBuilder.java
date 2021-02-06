@@ -32,12 +32,9 @@ public class MapBuilder {
 
                     Random random = new Random();
                     int road_speed = (int) (random.nextGaussian() * 15 + 45);
-                    if (road_speed > 65) {
-                        road_speed = 65;
-                    }
-                    if (road_speed < 25) {
-                        road_speed = 25;
-                    }
+                    if (road_speed > 65) road_speed = 65;
+                    if (road_speed < 25) road_speed = 25;
+
 
                     // Update road coordinates in next for loop instead
                     Road road = new Road(name, direction, road_speed);

@@ -27,10 +27,10 @@ public class Road {
         this.roadSpeed = roadSpeed;
     }
 
-    public Road(String name, int roadSpeed) {
+    public Road(String name, Point p0, Point p1, int roadSpeed) {
         this.name = name;
-        this.coordinates = new LinkedList<>();
-        this.direction = direction;
+        this.p0 = p0;
+        this.p1 = p1;
         this.roadSpeed = roadSpeed;
     }
 
