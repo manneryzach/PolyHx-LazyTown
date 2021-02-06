@@ -152,7 +152,6 @@ public class Carpool {
 
     // Finds the best path for each user (needs to be adapted to optimize for every user)
     private UserPair carpoolPath(UserPair pair) {
-        // TODO Fill in code for bestPath
         User driver = pair.driver;
         User passenger = pair.passenger;
         Point pA = findClosestVertex(passenger.coordA);
@@ -166,16 +165,15 @@ public class Carpool {
         double speed = 50;
 
         for (int i=0; i<(route.size()-2);i++){
-            ArrayList<Roads> possible_roads = maps.get(route(i));
+            ArrayList<Road> possible_roads = map.getRoads(route.get(i));
             for (Road possible_road : possible_roads){
-                if (possible_road.p1.equals(route(i+1))){
-                    speed = (double) possible_road.roadSpeed;
+                if (possible_road.getNextPoint().equals(route.get(i+1))){
+                    speed = possible_road.getRoadSpeed();
                     break;
                 }
             }
-            time_score += Point.eucDist(route(i),route(i+1))/speed;
+            time_score += Point.eucDist(route.get(i),route.get(i+1))/speed;
         }
-        UserPair carpool_pair = new UserPair(passenger, driver, route, time_score);
-        return null;
+        return new UserPair(passenger, driver, route, time_score);
     }
 }
