@@ -29,12 +29,13 @@ public class Drawing extends Canvas {
                 if(!uniqueRoads.contains(r)) uniqueRoads.add(r);
         }
 
-
-
-
+        // Draw each road on the map. A road segment is represented by a line (p0, p1)
         for (Road r: uniqueRoads) {
-            Iterator iter = r.getCoordinates().iterator();
+            // Helps for visualization
+            g2.setColor(new Color(r.getRoadSpeed()));
 
+            //
+            Iterator iter = r.getCoordinates().iterator();
             Point p0 = (Point) iter.next();
             Point p1 = (Point) iter.next();
 
@@ -48,10 +49,6 @@ public class Drawing extends Canvas {
                 p1 = (Point) iter.next();
                 p0 = temp;
             }
-
-            //Ellipse2D point = new Ellipse2D.Double(p.x, p.y, 5.0, 5.0);
-            //g2.draw(point);
         }
-
     }
 }

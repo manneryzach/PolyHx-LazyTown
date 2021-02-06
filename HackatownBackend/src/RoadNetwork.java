@@ -29,10 +29,16 @@ public class RoadNetwork {
         return sortedCoordinates;
     }
 
-    // Mutators
-
-    // Custom methods
+    /**
+     * Computes the shortest weighted path from one road intersection to another using Dijkstra's algorithm.
+     * The weight of each road is calculated with respect its the speed.
+     * @param coordA Starting point
+     * @param coordB End point
+     * @return A sequence of intersection representing the optimal route.
+     * **/
     public ArrayList<Point> shortestPath(Point coordA, Point coordB) {
+        if(!roads.containsKey(coordA) || !roads.containsKey(coordB))
+            throw new IllegalArgumentException("Coordinates must be intersections on the map");
         // TODO Fill in code for shortestPath
         return null;
     }
