@@ -6,16 +6,35 @@ public class Point implements Comparable {
     public Double x;
     public Double y;
     public boolean isVisited;
+    private Double dist;
+    private Point prev;
 
     public Point(Double x, Double y) {
         this.x = x;
         this.y = y;
         this.isVisited = false;
+        this.dist = -1.0;
     }
 
     public Point() {
         this.x = 0.0;
         this.y = 0.0;
+    }
+
+    public Double getDist() {
+        return dist;
+    }
+
+    public Point getPrev() {
+        return prev;
+    }
+
+    public void setDist(Double dist) {
+        this.dist = dist;
+    }
+
+    public void setPrev(Point prev) {
+        this.prev = prev;
     }
 
     public static Double eucNorm(Point p) {
