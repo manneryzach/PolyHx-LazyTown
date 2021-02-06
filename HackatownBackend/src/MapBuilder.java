@@ -36,15 +36,13 @@ public class MapBuilder {
 
                 Road road = new Road(name, coords, direction, road_speed);
 
-                for (Double[] elem : coords)
-
                 for (Double[] elem : coords){
                     if (network.get(elem) == null){
                         ArrayList<Road> hash_roads = new ArrayList<Road>();
-                        cds_roads.add(road);
+                        hash_roads.add(road);
                         network.put(elem, hash_roads);
                     }else if(network.get(elem) != null){
-                        network.replace(elem, network.get(elem).add(road));
+                        network.get(elem).add(road);
                     }
                 }
             }
