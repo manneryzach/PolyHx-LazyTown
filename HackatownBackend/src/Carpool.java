@@ -46,26 +46,26 @@ public class Carpool {
         double b = Point.eucDist(A, B);
         double c = Point.eucDist(A, C);
         double m = Point.eucDist(B, C)/2;
-        return (Math.sqrt((Math.pow(i,2)+Math.pow(i,2))/2) - Math.pow(m,2))
+        return (Math.sqrt((Math.pow(b,2)+Math.pow(c,2))/2) - Math.pow(m,2));
     }
 
     private Point findClosestVertex(Point coord) {
         // Binary search
         int L = 0;
-        int R = map.sortedCoordinates.size() - 1;
+        int R = map.getSortedCoordinates().size() - 1;
         int m;
         double c_norm = Point.eucNorm(coord);
         while (L<=R){
             m = (L+R)/2;
-            if (Point.eucNorm(map.sortedCoordinate(m)) < c_norm){
+            if (Point.eucNorm(map.getSortedCoordinates().get(m)) < c_norm){
                 L = m + 1;
-            }else if (Point.eucNorm(map.sortedCoordinates(m)) > c_norm){
+            }else if (Point.eucNorm(map.getSortedCoordinates().get(m)) > c_norm){
                 R = m - 1;
             }else{
                 break;
             }
         }
-        return sortedCoordinates(m);
+        return map.getSortedCoordinates().get(m);
     }
 
     // Pruning process
