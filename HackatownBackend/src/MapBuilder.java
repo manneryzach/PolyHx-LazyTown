@@ -32,7 +32,7 @@ public class MapBuilder {
                     Long direction = (Long) properties.get("SENS_CIR");
 
                     Random random = new Random();
-                    int road_speed = (int) random.nextGaussian() * 15 + 45;
+                    int road_speed = (int) (random.nextGaussian() * 15 + 45);
                     if (road_speed > 65) {
                         road_speed = 65;
                     }
@@ -53,7 +53,6 @@ public class MapBuilder {
                     }
                 }
             }
-
             return network;
         }
     }
