@@ -30,8 +30,8 @@ public class Point implements Comparable {
         double scale_factor = 5.0;
         x = x + 73.66882;
         y = y - 45.44784;
-        x = x * 54.3 * scale_factor;
-        y = 108.6 * scale_factor * 45.5123 - y * 108.6 * scale_factor;
+        x = x * 1550 * scale_factor;
+        y = y * 1550 * scale_factor;
         return new Point(x, y);
     }
 
