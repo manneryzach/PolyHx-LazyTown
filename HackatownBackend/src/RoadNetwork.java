@@ -3,11 +3,10 @@ import java.util.*;
 public class RoadNetwork {
     // Fields
     private HashMap<Double[], ArrayList<Road>> roads;
-    private MapBuilder parser;
 
     // Constructors
-    public RoadNetwork(String JSONPath) {
-
+    public RoadNetwork(String JSONPath) throws Exception {
+        this.roads = MapBuilder.parser(JSONPath);
     }
 
     // Accessors
