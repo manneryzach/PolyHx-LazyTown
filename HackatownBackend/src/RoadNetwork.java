@@ -43,10 +43,10 @@ public class RoadNetwork {
         if(!roads.containsKey(coordA) || !roads.containsKey(coordB))
             throw new IllegalArgumentException("Coordinates must be intersections on the map");
 
-        ArrayList<Point> vertices = new ArrayList<>();
+        ArrayList<Point> vertices = new ArrayList<>(roads.keySet());
 
         for (Point v : roads.keySet()) {
-            v.setDist(-1.0);
+            v.setDist(Double.MAX_VALUE);
             v.setPrev(null);
         }
         coordA.setDist(0.0);
