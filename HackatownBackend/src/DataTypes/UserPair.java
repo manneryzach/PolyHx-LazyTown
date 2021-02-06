@@ -12,6 +12,7 @@ public class UserPair {
         this.passenger = passenger;
         this.driver = driver;
         this.route = route;
+        this.time_score = time_score;
     }
 
     public UserPair(User passenger, User driver) {
