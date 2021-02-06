@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Sorting {
     public static <E extends Comparable> void quickSort(ArrayList<E> elements, int left, int right) {
