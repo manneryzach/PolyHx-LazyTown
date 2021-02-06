@@ -49,6 +49,7 @@ public class RoadNetwork {
             v.setDist(Double.MAX_VALUE);
             v.setPrev(null);
         }
+
         coordA.setDist(0.0);
 
         while (!vertices.isEmpty()) {
