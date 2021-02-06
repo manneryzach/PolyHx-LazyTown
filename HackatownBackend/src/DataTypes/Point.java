@@ -25,18 +25,28 @@ public class Point implements Comparable {
     }
 
     // returns <0 if this smaller than p, =0 if equal and >0 if bigger
-    public int compareTo(Object p) {
-        if (!(p instanceof Point))
+    public int compareTo(Object o) {
+        if (!(o instanceof Point))
             throw new IllegalArgumentException("Cannot compare points to other objects");
-        if ((eucNorm(this) - eucNorm((Point) p)) == 0) {
-            if (this.x < ((Point) p).y) return -1;
+
+        if (this.equals(o))
+            return 0;
+
+        Double dist0 = eucNorm(this);
+        Double dist1 = eucNorm((DataTypes.Point) o);
+
+        if (dist0 - dist1 == 0) {
+            if (this.x == ((Point) o).x)
+                if (this.y < ((Point) o).y)
+                    return -1;
+            if (this.y > ((Point) o).y)
+                return 1;
+            if (this.x < ((Point) o).x) return -1;
             return 1;
         }
-        // Double dist0 = eucNorm(this);
-        // Double dist1 = eucNorm((DataTypes.Point) p);
 
-        // Maybe type cast here is bad idea
-        return (int) (eucNorm(this) - eucNorm((Point) p));
+        if (dist0 - dist1 < 0) return -1;
+        else return 1;
     }
 
     @Override
