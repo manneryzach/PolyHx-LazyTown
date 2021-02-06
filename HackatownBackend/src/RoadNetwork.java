@@ -3,6 +3,7 @@ import java.util.*;
 public class RoadNetwork {
     // Fields
     private HashMap<Double[], ArrayList<Road>> roads;
+    private ArrayList<Road> sortedRoads;
 
     // Constructors
     public RoadNetwork(String JSONPath) throws Exception {
