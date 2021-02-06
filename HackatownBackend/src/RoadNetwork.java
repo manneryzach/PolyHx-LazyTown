@@ -1,23 +1,23 @@
 import java.util.*;
 
 public class RoadNetwork {
-    /** Fields **/
+    // Fields
     private HashMap<Double[], ArrayList<Road>> roads;
     private MapBuilder parser;
 
-    /** Constructors **/
+    // Constructors
     public RoadNetwork(String JSONPath) {
 
     }
 
-    /** Accessors **/
+    // Accessors
     public ArrayList<Road> getRoad(Double[] coordinates) {
         return roads.get(coordinates);
     }
 
-    /** Mutators **/
+    // Mutators
 
-    /** Custom methods **/
+    // Custom methods
     public ArrayList<Road> shortestPath(Double[] coordA, Double[] coordB) {
         return null;
     }
