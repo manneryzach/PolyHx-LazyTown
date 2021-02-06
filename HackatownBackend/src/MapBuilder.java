@@ -25,27 +25,31 @@ public class MapBuilder {
 
                 JSONObject properties = (JSONObject) ((JSONObject) street).get("properties");
 
-                String name = (String) properties.get("NOM_VOIE");
-                Long direction = (Long) properties.get("SENS_CIR");
+                String hood = (String) properties.get("ARR_DRT");
 
-                Random random = new Random();
-                int road_speed = (int) random.nextGaussian() * 15 + 45;
-                if (road_speed > 65) {
-                    road_speed = 65;
-                }
-                if (road_speed < 25) {
-                    road_speed = 25;
-                }
+                if (hood.equals("Côte-des-Neiges-Notre-Dame-de-Grâce")){
+                    String name = (String) properties.get("NOM_VOIE");
+                    Long direction = (Long) properties.get("SENS_CIR");
 
-                Road road = new Road(name, coords, direction, road_speed);
+                    Random random = new Random();
+                    int road_speed = (int) random.nextGaussian() * 15 + 45;
+                    if (road_speed > 65) {
+                        road_speed = 65;
+                    }
+                    if (road_speed < 25) {
+                        road_speed = 25;
+                    }
 
-                for (Double[] elem : coords) {
-                    if (network.get(elem) == null) {
-                        ArrayList<Road> hash_roads = new ArrayList<>();
-                        hash_roads.add(road);
-                        network.put(elem, hash_roads);
-                    } else if (network.get(elem) != null) {
-                        network.get(elem).add(road);
+                    Road road = new Road(name, coords, direction, road_speed);
+
+                    for (Double[] elem : coords) {
+                        if (network.get(elem) == null) {
+                            ArrayList<Road> hash_roads = new ArrayList<>();
+                            hash_roads.add(road);
+                            network.put(elem, hash_roads);
+                        } else if (network.get(elem) != null) {
+                            network.get(elem).add(road);
+                        }
                     }
                 }
             }
