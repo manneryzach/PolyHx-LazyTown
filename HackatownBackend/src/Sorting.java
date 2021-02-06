@@ -29,9 +29,9 @@ public class Sorting {
     }
 
     private static <E extends Comparable> void placeMedian(ArrayList<E> elements, int left, int right) {
-        E low = results.get(elements.get(left));
-        E mid = results.get(elements.get((left + right) / 2));
-        E high = results.get(elements.get(right));
+        E low = elements.get(left);
+        E mid = elements.get((left + right) / 2);
+        E high = elements.get(right);
 
         // Note that if high is the median, then the pivot is already correctly placed (no swap).
         if (low.compareTo(mid) <= 0 && low.compareTo(high) <= 0 && mid.compareTo(high) < 0) {
