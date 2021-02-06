@@ -10,7 +10,7 @@ public class RoadNetwork {
         this.roads = MapBuilder.parser(JSONPath);
 
         ArrayList<Point> roadArray = (ArrayList<Point>) roads.keySet();
-        Sorting.quickSort((ArrayList<Point>) roads.keySet(), 0, roadArray.size());
+        Sorting.quickSort(roadArray, 0, roadArray.size() - 1);
 
         this.sortedRoads = roadArray;
     }
