@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.Iterator;
 import javax.swing.JFrame;
 
 public class Drawing extends Canvas {
@@ -35,7 +34,7 @@ public class Drawing extends Canvas {
         // Draw each road on the map. A road segment is represented by a line (p0, p1)
         for (Point p0 : coords) {
             for (Road r : map.getRoad(p0)) {
-                Point p1 = r.getNextRoad();
+                Point p1 = r.getNextPoint();
                 // Linear transformation
                 Point p0_trans = Point.transform(p0);
                 Point p1_trans = Point.transform(p1);

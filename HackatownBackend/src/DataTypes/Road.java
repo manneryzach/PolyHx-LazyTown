@@ -51,7 +51,7 @@ public class Road {
         return roadSpeed;
     }
 
-    public Point getNextRoad() {
+    public Point getNextPoint() {
         return this.p1;
     }
 

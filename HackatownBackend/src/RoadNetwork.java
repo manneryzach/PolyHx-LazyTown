@@ -52,8 +52,20 @@ public class RoadNetwork {
         coordA.setDist(0.0);
 
         while (!vertices.isEmpty()) {
-            Point u =
+            Point u = findMin(vertices);
+
+            vertices.remove(u);
+
+            for (Road outRoad : roads.get(u)) {
+                Double alt = u.getDist() + outRoad.getWeight();
+                if (alt < outRoad.getNextPoint().getDist()) {
+                    outRoad.getNextPoint().setDist(alt);
+                    outRoad.getNextPoint().setPrev(u);
+                }
+            }
         }
+        LinkedList<Point> route
+
             //Somehow import the graph/the roads
                 //Start from PointA
 
@@ -69,6 +81,8 @@ public class RoadNetwork {
         return null;
     }
 
-    private Point findMin
+    private Point findMin(ArrayList<Point> vertices) {
+        return null;
+    }
 
 }
