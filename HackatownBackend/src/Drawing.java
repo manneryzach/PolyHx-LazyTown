@@ -1,5 +1,9 @@
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JFrame;
 
 public class Drawing extends Canvas {
@@ -12,13 +16,41 @@ public class Drawing extends Canvas {
         frame.setVisible(true);
     }
 
+    // Draws the map of montreal
     public void paint(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         RoadNetwork map = new RoadNetwork("./routes.json");
+        ArrayList<Point> coords = map.getSortedCoordinates();
+        ArrayList<Road> uniqueRoads = new ArrayList<>();
 
-        for (Point p: map.getSortedCoordinates()) {
-            Ellipse2D point = new Ellipse2D.Double(p.x, p.y, 5.0, 5.0);
-            g2.draw(point);
+        // Get unique roads
+        for (Point p : coords) {
+            for (Road r : map.getRoad(p))
+                if(!uniqueRoads.contains(r)) uniqueRoads.add(r);
+        }
+
+
+
+
+        for (Road r: uniqueRoads) {
+            Iterator iter = r.getCoordinates().iterator();
+
+            Point p0 = (Point) iter.next();
+            Point p1 = (Point) iter.next();
+
+            while(iter.hasNext()) {
+                Point2D point0 = new Point2D.Double(p0.x, p0.y);
+                Point2D point1 = new Point2D.Double(p1.x, p1.y);
+                g2.draw(new Line2D.Double(point0, point1));
+
+                // Update pointers
+                Point temp = new Point(p1.x, p1.y);
+                p1 = (Point) iter.next();
+                p0 = temp;
+            }
+
+            //Ellipse2D point = new Ellipse2D.Double(p.x, p.y, 5.0, 5.0);
+            //g2.draw(point);
         }
 
     }

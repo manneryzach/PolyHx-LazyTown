@@ -21,7 +21,7 @@ public class RoadNetwork {
     }
 
     // Accessors
-    public ArrayList<Road> getRoad(Double[] coordinates) {
+    public ArrayList<Road> getRoad(Point coordinates) {
         return roads.get(coordinates);
     }
 
