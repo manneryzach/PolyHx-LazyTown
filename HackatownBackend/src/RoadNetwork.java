@@ -1,3 +1,6 @@
+import DataTypes.Point;
+import DataTypes.Road;
+
 import java.util.*;
 
 public class RoadNetwork {

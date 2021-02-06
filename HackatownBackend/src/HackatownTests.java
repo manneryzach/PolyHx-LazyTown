@@ -1,9 +1,8 @@
+import DataTypes.Point;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.Canvas;
-import java.awt.Graphics;
 import javax.swing.JFrame;
 
 

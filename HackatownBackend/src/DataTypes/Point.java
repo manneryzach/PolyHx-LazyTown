@@ -1,8 +1,10 @@
+package DataTypes;
+
 import java.util.Objects;
 
 public class Point implements Comparable {
-    Double x;
-    Double y;
+    public Double x;
+    public Double y;
 
     public Point(Double x, Double y) {
         this.x = x;
@@ -31,7 +33,7 @@ public class Point implements Comparable {
             return 1;
         }
         // Double dist0 = eucNorm(this);
-        // Double dist1 = eucNorm((Point) p);
+        // Double dist1 = eucNorm((DataTypes.Point) p);
 
         // Maybe type cast here is bad idea
         return (int) (eucNorm(this) - eucNorm((Point) p));

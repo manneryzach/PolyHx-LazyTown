@@ -1,11 +1,11 @@
+import DataTypes.Point;
+import DataTypes.Road;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 
 import java.io.*;
 import java.util.*;
-import java.text.ParseException;
 
 public class MapBuilder {
 
