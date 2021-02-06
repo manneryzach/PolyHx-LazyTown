@@ -25,8 +25,9 @@ class HackatownTests extends Canvas{
             norms.add(Point.eucNorm(p));
         }
         System.out.println(norms);
-        Sorting.quickSort(norms, 0, norms.size() - 1);
-        System.out.println("QUICK SORTED_____________________");
-        System.out.println(norms);
+        for (int i = 1; i < norms.size(); i++) {
+            if (norms.get(i - 1) > norms.get(i))
+                throw new RuntimeException("Array is not properly sorted at point" + coords.get(i));
+        }
     }
 }
