@@ -5,10 +5,12 @@ import java.util.Objects;
 public class Point implements Comparable {
     public Double x;
     public Double y;
+    public boolean isVisited;
 
     public Point(Double x, Double y) {
         this.x = x;
         this.y = y;
+        this.isVisited = false;
     }
 
     public Point(){
