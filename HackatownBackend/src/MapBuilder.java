@@ -17,9 +17,15 @@ public class MapBuilder {
             JSONObject obj = (JSONObject) parser.parse(reader);
             JSONArray roads = (JSONArray) obj.get("features");
 
+            ArrayList<Double[]> all_coords = new ArrayList<Double[]>();
+            ArrayList<double[]> all_coords_purged = new ArrayList<Double[]>();
+
             for (Object street : roads){
                 JSONObject geometry = (JSONObject) ((JSONObject) street).get("geometry");
                 ArrayList<Double[]> coords = (ArrayList<Double[]>) geometry.get("coordinates");
+                for (Double[] elem : coords){
+                    all_coords.add(elem);
+                }
 
                 JSONObject properties = (JSONObject) ((JSONObject) street).get("properties");
 
@@ -34,6 +40,9 @@ public class MapBuilder {
                     road_speed = 25;
                 }
 
+                //
+
+                //
                 //
 
             }
