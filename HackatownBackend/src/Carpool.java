@@ -21,12 +21,12 @@ public class Carpool {
     }
 
     // Custom methods
-    public UserPairs findMatches(ArrayList<Integer> userIDs) {
+    public UserPair findMatches(ArrayList<Integer> userIDs) {
         // TODO Fill in code for findMatches1
         return null;
     }
 
-    public UserPairs findMatches() {
+    public UserPair findMatches() {
         // TODO Fill in code for findMatches1
         return null;
     }
@@ -43,7 +43,7 @@ public class Carpool {
     }
 
     // Pruning process
-    private UserPairs getPossibleCombinations(ArrayList<Integer> userIDs) {
+    private ArrayList<UserPair> getPossibleCombinations(ArrayList<Integer> userIDs) {
         // TODO fill in code
         return null;
     }
