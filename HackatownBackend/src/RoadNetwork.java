@@ -39,7 +39,7 @@ public class RoadNetwork {
      * @param coordB End point
      * @return A sequence of intersection representing the optimal route.
      * **/
-    public LinkedList<Point> shortestPath(Point coordA, Point coordB) {
+    public ArrayList<Point> shortestPath(Point coordA, Point coordB) {
         if(!roads.containsKey(coordA) || !roads.containsKey(coordB))
             throw new IllegalArgumentException("Coordinates must be intersections on the map");
 
@@ -73,7 +73,7 @@ public class RoadNetwork {
             u = u.getPrev();
         }
 
-        return route;
+        return new ArrayList<>(route);
     }
 
     private Point findMin(ArrayList<Point> vertices) {
