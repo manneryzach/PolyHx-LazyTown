@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class UserPair {
     public User passenger;
     public User driver;
-    ArrayList<Point> route; // TODO Change to ArrayList<DataTypes.Point>
+    ArrayList<Point> route;
 
     public UserPair(User passenger, User driver, ArrayList<Point> route) {
         this.passenger = passenger;

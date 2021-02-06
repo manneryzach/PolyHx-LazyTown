@@ -31,7 +31,7 @@ public class Carpool {
     }
 
     public UserPair findMatches(ArrayList<Integer> userIDs) {
-        // TODO Fill in code for findMatches1
+        // TODO Fill in code for findMatches
         return null;
     }
 
@@ -49,7 +49,6 @@ public class Carpool {
     // Pruning process
     private ArrayList<UserPair> getPossibleCombinations(ArrayList<Integer> userIDs) {
         // Fixme Changed user pair to contain users and not userIDs (line 108 broken)
-        // TODO fill in code
         // Separating drivers and passengers IDs
         ArrayList<Integer> driverIDs = new ArrayList<>();
         ArrayList<Integer> passengerIDs = new ArrayList<>();
