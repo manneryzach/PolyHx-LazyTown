@@ -43,22 +43,33 @@ public class RoadNetwork {
         if(!roads.containsKey(coordA) || !roads.containsKey(coordB))
             throw new IllegalArgumentException("Coordinates must be intersections on the map");
 
-        ArrayList<Point> vertices = new ArrayList<>(roads.keySet());
+        PriorityQueue<Node> vertices = new PriorityQueue<>();
 
-        for (Point v : roads.keySet()) {
-            v.setDist(Double.MAX_VALUE);
-            v.setPrev(null);
-        }
+        for (Point v : roads.keySet())
+            if (!v.equals(coordA))
+                vertices.add(new Node(v));
+
 
         coordA.setDist(0.0);
 
+//        for (Node u : vertices) {
+//            if (u.equals(coordA)) break;
+//
+//            for (Road outRoad : roads.get(u)) {
+//                Double alt = u.getDist() + outRoad.getWeight();
+//                if (alt < outRoad.getNextPoint().getDist()) {
+//                    outRoad.getNextPoint().setDist(alt);
+//                    outRoad.getNextPoint().setPrev(u);
+//                }
+//        }
+
         while (!vertices.isEmpty()) {
-            Point u = findMin(vertices);
+            Node u = vertices.poll();
 
             vertices.remove(u);
-            if (u.equals(coordA)) break;
+            if (u.p.equals(coordA)) break;
 
-            for (Road outRoad : roads.get(u)) {
+            for (Road outRoad : roads.get(u.p)) {
                 Double alt = u.getDist() + outRoad.getWeight();
                 if (alt < outRoad.getNextPoint().getDist()) {
                     outRoad.getNextPoint().setDist(alt);
@@ -78,7 +89,57 @@ public class RoadNetwork {
     }
 
     private Point findMin(ArrayList<Point> vertices) {
+        Point min = new Point(0., 0.);
+
+        for (Point v : vertices) {
+
+        }
+
         return null;
+    }
+
+    private class Node implements Comparable {
+        private Double dist;
+        private Node prev;
+        private Point p;
+
+        public Node(Point p) {
+            this.dist = Double.MAX_VALUE;
+            this.prev = null;
+            this.p = p;
+        }
+
+        public Double getDist() {
+            return dist;
+        }
+
+        public Node getPrev() {
+            return prev;
+        }
+
+        public Point getP() {
+            return p;
+        }
+
+        public void setDist(Double dist) {
+            this.dist = dist;
+        }
+
+        public void setPrev(Node prev) {
+            this.prev = prev;
+        }
+
+        public void setP(Point p) {
+            this.p = p;
+        }
+
+        @Override
+        public int compareTo(Object o) {
+            if (!(o instanceof Node)) throw new IllegalArgumentException();
+            if (this.dist - ((Node) o).dist < 0) return -1;
+            if (this.dist - ((Node) o).dist > 0) return 1;
+            return 0;
+        }
     }
 
 }

@@ -13,7 +13,7 @@ public class Point implements Comparable {
         this.x = x;
         this.y = y;
         this.isVisited = false;
-        this.dist = -1.0;
+        this.dist = Double.MAX_VALUE;
     }
 
     public Point() {
