@@ -3,21 +3,30 @@ import java.util.*;
 public class RoadNetwork {
     // Fields
     private HashMap<Point, ArrayList<Road>> roads;
-    private ArrayList<Point> sortedRoads;
+    private ArrayList<Point> sortedCoordinates;
 
     // Constructors
-    public RoadNetwork(String JSONPath) throws Exception {
-        this.roads = MapBuilder.parser(JSONPath);
+    public RoadNetwork(String JSONPath) {
+        // Initialise hashmap
+        try {
+            this.roads = MapBuilder.parser(JSONPath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // Initialize sorted roads
+        ArrayList<Point> pointArray = (ArrayList<Point>) roads.keySet();
+        Sorting.quickSort(pointArray, 0, pointArray.size() - 1);
 
-        ArrayList<Point> roadArray = (ArrayList<Point>) roads.keySet();
-        Sorting.quickSort(roadArray, 0, roadArray.size() - 1);
-
-        this.sortedRoads = roadArray;
+        this.sortedCoordinates = pointArray;
     }
 
     // Accessors
     public ArrayList<Road> getRoad(Double[] coordinates) {
         return roads.get(coordinates);
+    }
+
+    public ArrayList<Point> getSortedCoordinates() {
+        return sortedCoordinates;
     }
 
     // Mutators

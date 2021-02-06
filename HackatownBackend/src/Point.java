@@ -14,24 +14,27 @@ public class Point implements Comparable {
         this.y = 0.0;
     }
 
-    // returns <0 if this smaller than p, =0 if equal and >0 if bigger
-    public int compareTo(Object p) {
-        if (!(p instanceof Point))
-            throw new IllegalArgumentException("Cannot compare points to other objects");
-
-        // Double dist0 = eucNorm(this);
-        // Double dist1 = eucNorm((Point) p);
-
-        // Maybe type cast here is bad idea
-        return (int) (eucNorm(this) - eucNorm((Point) p));
-    }
-
     public static Double eucNorm(Point p) {
         return Math.sqrt(Math.pow(p.x, 2) + Math.pow(p.y, 2));
     }
 
     public static Double eucDist(Point p0, Point p1) {
         return Math.sqrt(Math.pow((p0.x - p1.x), 2) + Math.pow((p0.y - p1.y), 2));
+    }
+
+    // returns <0 if this smaller than p, =0 if equal and >0 if bigger
+    public int compareTo(Object p) {
+        if (!(p instanceof Point))
+            throw new IllegalArgumentException("Cannot compare points to other objects");
+        if ((eucNorm(this) - eucNorm((Point) p)) == 0) {
+            if (this.x < ((Point) p).y) return -1;
+            return 1;
+        }
+        // Double dist0 = eucNorm(this);
+        // Double dist1 = eucNorm((Point) p);
+
+        // Maybe type cast here is bad idea
+        return (int) (eucNorm(this) - eucNorm((Point) p));
     }
 
     @Override

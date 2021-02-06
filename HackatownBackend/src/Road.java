@@ -38,4 +38,9 @@ public class Road {
     public int getRoadSpeed() {
         return roadSpeed;
     }
+
+//    @Override
+//    public int compareTo(Object o) {
+//        if(!(o instanceof Road)) throw new IllegalArgumentException("Cannot compare a road ");
+//    }
 }

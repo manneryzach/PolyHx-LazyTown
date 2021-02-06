@@ -2,7 +2,12 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
-class HackatownTests {
+import java.awt.Canvas;
+import java.awt.Graphics;
+import javax.swing.JFrame;
+
+
+class HackatownTests extends Canvas{
 
     @Test
     void pointSorting() {
@@ -15,4 +20,13 @@ class HackatownTests {
         System.out.println(points);
     }
 
+    @Test
+    void visualizeRoad() {
+        JFrame frame = new JFrame("My Drawing");
+        Canvas canvas = new HackatownTests();
+        canvas.setSize(400, 400);
+        frame.add(canvas);
+        frame.pack();
+        frame.setVisible(true);
+    }
 }
