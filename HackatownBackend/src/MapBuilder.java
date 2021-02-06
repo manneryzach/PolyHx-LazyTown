@@ -6,10 +6,8 @@ import java.io.*;
 import java.util.*;
 import java.text.ParseException;
 
-import Road;
-
 public class MapBuilder {
-    public static ArrayList<Road> parser(String file_path) throws exception{
+    public static ArrayList<Road> parser(String file_path) throws Exception{
         JSONParser parser = new JSONParser();
         ArrayList<Road> network = new ArrayList<Road>();
 
@@ -17,15 +15,12 @@ public class MapBuilder {
             JSONObject obj = (JSONObject) parser.parse(reader);
             JSONArray roads = (JSONArray) obj.get("features");
 
-            ArrayList<Double[]> all_coords = new ArrayList<Double[]>();
-            ArrayList<double[]> all_coords_purged = new ArrayList<Double[]>();
+            HashMap<Double[], ArrayList<Road>> network = new HashMap<Double[], ArrayList<Road>>;
 
             for (Object street : roads){
                 JSONObject geometry = (JSONObject) ((JSONObject) street).get("geometry");
                 ArrayList<Double[]> coords = (ArrayList<Double[]>) geometry.get("coordinates");
-                for (Double[] elem : coords){
-                    all_coords.add(elem);
-                }
+
 
                 JSONObject properties = (JSONObject) ((JSONObject) street).get("properties");
 
@@ -33,17 +28,24 @@ public class MapBuilder {
                 Long direction = (Long) properties.get("SENS_CIR");
 
                 Random random = new Random();
-                int road_speed = random.nextGaussian()*15+45;
+                int road_speed = (int) random.nextGaussian()*15+45;
                 if (road_speed > 65){
                     road_speed = 65;
                 }if (road_speed < 25){
                     road_speed = 25;
                 }
 
-                //
+                Road road = new Road(name, coords, direction, road_speed);
 
-                //
-                //
+                for (Double[] elem : coords)
+
+                for (Double[] elem : coords){
+                    if (network.get(elem) == null){
+                        ArrayList<Road> hash_roads = new ArrayList<Road>();
+                        cds_roads.add(elem);
+                        network.put(elem,)
+                    }
+                }
 
             }
     }
