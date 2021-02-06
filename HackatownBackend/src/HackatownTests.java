@@ -17,15 +17,16 @@ class HackatownTests extends Canvas{
         Sorting.quickSort(points, 0, 1);
 
         System.out.println(points);
-    }
 
-    @Test
-    void visualizeRoad() {
-        JFrame frame = new JFrame("My Drawing");
-        Canvas canvas = new HackatownTests();
-        canvas.setSize(400, 400);
-        frame.add(canvas);
-        frame.pack();
-        frame.setVisible(true);
+        RoadNetwork map = new RoadNetwork("./data/routes.json");
+        ArrayList<DataTypes.Point> coords = map.getSortedCoordinates();
+        ArrayList<Double> norms = new ArrayList<>();
+        for (Point p : coords) {
+            norms.add(Point.eucNorm(p));
+        }
+        System.out.println(norms);
+        Sorting.quickSort(norms, 0, norms.size() - 1);
+        System.out.println("QUICK SORTED_____________________");
+        System.out.println(norms);
     }
 }
