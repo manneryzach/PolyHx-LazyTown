@@ -53,10 +53,10 @@ public class Carpool {
 
         ArrayList<UserPair> pairs = new ArrayList<>();
 
-        for (int key : users.keySet()){
-            if (((users.get(key)).isPassenger) == true){
+        for (int key : users.keySet()) {
+            if (((users.get(key)).isPassenger) == true) {
                 passengerIDs.add(key);
-            }else{
+            } else {
                 driverIDs.add(key);
             }
         }
@@ -70,10 +70,10 @@ public class Carpool {
         int mB = 0;
         double pA_norm;
         double pB_norm;
-        for (Integer p_key : passengerIDs){
+        for (Integer p_key : passengerIDs) {
             pA_norm = Point.eucNorm(users.get(p_key).coordA);
             pB_norm = Point.eucNorm(users.get(p_key).coordB);
-            for (Integer d_key : driverIDs){
+            for (Integer d_key : driverIDs) {
                 d_path = map.shortestPath(users.get(d_key).coordA, users.get(d_key).coordB);
                 Sorting.quickSort(d_path, 0, d_path.size() - 1);
                 LA = 0;
@@ -81,29 +81,29 @@ public class Carpool {
                 RA = d_path.size() - 1;
                 RB = RA;
                 // Binary search coord A
-                while (LA <= RA){
-                    mA = (LA+RA)/2;
-                    if (Point.eucNorm(d_path.get(mA)) > pA_norm){
+                while (LA <= RA) {
+                    mA = (LA + RA) / 2;
+                    if (Point.eucNorm(d_path.get(mA)) > pA_norm) {
                         RA = mA - 1;
-                    }else if(Point.eucNorm(d_path.get(mA)) < pA_norm){
+                    } else if (Point.eucNorm(d_path.get(mA)) < pA_norm) {
                         LA = mA + 1;
-                    }else{
+                    } else {
                         break;
                     }
                 }
                 // Binary search coord B
-                while (LB <= RB){
-                    mB = (LB+RB)/2;
-                    if (Point.eucNorm(d_path.get(mB)) > pB_norm){
+                while (LB <= RB) {
+                    mB = (LB + RB) / 2;
+                    if (Point.eucNorm(d_path.get(mB)) > pB_norm) {
                         RB = mA - 1;
-                    }else if(Point.eucNorm(d_path.get(mB)) < pB_norm){
+                    } else if (Point.eucNorm(d_path.get(mB)) < pB_norm) {
                         LB = mB + 1;
-                    }else{
+                    } else {
                         break;
                     }
                 }
                 // FIXME Make it an interval
-                if (Point.eucDist(users.get(p_key).coordA, d_path.get(mA)) < cutoff && Point.eucDist(users.get(p_key).coordB, d_path.get(mB)) < cutoff){
+                if (Point.eucDist(users.get(p_key).coordA, d_path.get(mA)) < cutoff && Point.eucDist(users.get(p_key).coordB, d_path.get(mB)) < cutoff) {
                     pairs.add(new UserPair(p_key, d_key));
                 }
             }
