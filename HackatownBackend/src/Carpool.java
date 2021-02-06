@@ -71,8 +71,8 @@ public class Carpool {
         double pA_norm;
         double pB_norm;
         for (Integer p_key : passengerIDs){
-            pA_norm = eucNorm(users.get(p_key).coordA);
-            pB_norm = eucNorm(users.get(p_key).coordB);
+            pA_norm = Point.eucNorm(users.get(p_key).coordA);
+            pB_norm = Point.eucNorm(users.get(p_key).coordB);
             for (Integer d_key : driverIDs){
                 d_path = map.shortestPath(users.get(d_key).coordA, users.get(d_key).coordB);
                 Sorting.quickSort(d_path, 0, d_path.size() - 1);
@@ -82,10 +82,10 @@ public class Carpool {
                 RB = RA;
                 // Binary search coord A
                 while (LA <= RA){
-                    mA = (int) ((LA+RA)/2);
-                    if (d_path.get(mA) > pA_norm){
+                    mA = (LA+RA)/2;
+                    if (Point.eucNorm(d_path.get(mA)) > pA_norm){
                         RA = mA - 1;
-                    }else if(d_path.get(mA) < pA_norm){
+                    }else if(Point.eucNorm(d_path.get(mA)) < pA_norm){
                         LA = mA + 1;
                     }else{
                         break;
@@ -93,16 +93,17 @@ public class Carpool {
                 }
                 // Binary search coord B
                 while (LB <= RB){
-                    mB = (int) ((LB+RB)/2);
-                    if (d_path.get(mB) > pB_norm){
-                        RA = mA - 1;
-                    }else if(d_path.get(mB) < pB_norm){
+                    mB = (LB+RB)/2;
+                    if (Point.eucNorm(d_path.get(mB)) > pB_norm){
+                        RB = mA - 1;
+                    }else if(Point.eucNorm(d_path.get(mB)) < pB_norm){
                         LB = mB + 1;
                     }else{
                         break;
                     }
                 }
-                if (eucDist(users.get(p_key).coordA, d_path.get(mA)) < cutoff && eucDist(users.get(p_key).coordB, d_path.get(mB)) < cutoff){
+                // FIXME Make it an interval
+                if (Point.eucDist(users.get(p_key).coordA, d_path.get(mA)) < cutoff && Point.eucDist(users.get(p_key).coordB, d_path.get(mB)) < cutoff){
                     pairs.add(new UserPair(p_key, d_key));
                 }
             }
