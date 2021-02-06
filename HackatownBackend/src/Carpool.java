@@ -1,15 +1,11 @@
 import java.util.*;
 
 public class Carpool {
-    /**
-     * Fields
-     **/
+    // Fields
     private RoadNetwork map;
     private HashMap<Integer, Double[][]> users;
 
-    /**
-     * Constructors
-     **/
+    // Constructors
     public Carpool(String JSONPAth, HashMap<Integer, Double[][]> users) {
         this.map = new RoadNetwork(JSONPAth);
         this.users = users;
@@ -19,18 +15,12 @@ public class Carpool {
         this.map = new RoadNetwork(JSONPAth);
     }
 
-    /**
-     * Accessors
-     **/
+    // Accessors
     public HashMap<Integer, Double[][]> getUsers() {
         return this.users;
     }
 
-    /** Mutators **/
-
-    /**
-     * Custom methods
-     **/
+    // Custom methods
     public UserPairs findMatches(ArrayList<Integer> userIDs) {
         return null;
     }
@@ -41,6 +31,10 @@ public class Carpool {
 
     // Helper methods
     private Road findClosestRoad(int userId) {
+        return null;
+    }
+
+    private Double[][] findClosestVertex(Double[][] coord) {
         return null;
     }
 
