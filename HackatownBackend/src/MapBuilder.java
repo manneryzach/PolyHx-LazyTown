@@ -24,9 +24,9 @@ public class MapBuilder {
 
                 JSONObject properties = (JSONObject) ((JSONObject) street).get("properties");
 
-                String hood = (String) properties.get("ARR_DRT");
+                String hood = (String) properties.get("LIM_GCH");
 
-                if (hood.equals("Côte-des-Neiges-Notre-Dame-de-Grâce")) {
+                if (hood.equals("Côte-des-Neiges-Notre-Dame-de-Grâce") || hood.equals("Westmount") || hood.equals("Ville-Marie") || hood.equals("Le Sud-Ouest")) {
                     String name = (String) properties.get("NOM_VOIE");
                     Long direction = (Long) properties.get("SENS_CIR");
 
