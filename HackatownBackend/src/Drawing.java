@@ -16,7 +16,6 @@ public class Drawing extends Canvas {
         frame.add(canvas);
         frame.pack();
         frame.setVisible(true);
-        System.out.println("End of execution");
     }
 
     // Draws the map of montreal
@@ -33,8 +32,9 @@ public class Drawing extends Canvas {
             for (Road r : map.getRoad(p))
                 if(!uniqueRoads.contains(r)) uniqueRoads.add(r);
         }
-        g2.translate(-76, 42);
-        g2.drawString("Hallo", 30, 44);
+//        g2.translate(-76, 42);
+        g2.drawString("Hallo", 100, 100);
+        g2.drawString("Bye bye", 200, 200);
 
         // Draw each road on the map. A road segment is represented by a line (p0, p1)
         for (Road r: uniqueRoads) {
@@ -47,8 +47,11 @@ public class Drawing extends Canvas {
             Point p1 = (DataTypes.Point) iter.next();
 
             while(iter.hasNext()) {
-                Point2D point0 = new Point2D.Double(p0.x, p0.y);
-                Point2D point1 = new Point2D.Double(p1.x, p1.y);
+                Point p0_trans = Point.transform(p0);
+                Point p1_trans = Point.transform(p1);
+                System.out.println("Plotting line from " + p0_trans + " to " + p1_trans);
+                Point2D point0 = new Point2D.Double(p0_trans.x, p0_trans.y);
+                Point2D point1 = new Point2D.Double(p1_trans.x, p1_trans.y);
                 g2.draw(new Line2D.Double(point0, point1));
 
                 // Update pointers
