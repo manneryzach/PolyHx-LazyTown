@@ -38,11 +38,11 @@ public class Carpool {
 
     // Helper methods
     private Road findClosestVertex(int userId) {
-        // TODO Fill in code for findClosestVertex for userID
-        return null;
+
+        return findClosestVertex(users.get(userId).coordA);
     }
 
-    private Double[][] findClosestVertex(Double[][] coord) {
+    private Double[][] findClosestVertex(Point coord) {
         // TODO Fill in code for findClosestVertex for coords
         return null;
     }
