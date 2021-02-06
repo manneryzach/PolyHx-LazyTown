@@ -70,7 +70,6 @@ public class Carpool {
 
     // Pruning process
     private ArrayList<UserPair> getPossibleCombinations(ArrayList<Integer> userIDs) {
-        // Fixme Changed user pair to contain users and not userIDs (line 108 broken)
         // Separating drivers and passengers IDs
         ArrayList<Integer> driverIDs = new ArrayList<>();
         ArrayList<Integer> passengerIDs = new ArrayList<>();
