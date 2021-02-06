@@ -45,8 +45,9 @@ public class Carpool {
     // Pruning process
     private ArrayList<UserPair> getPossibleCombinations(ArrayList<Integer> userIDs) {
         // TODO fill in code
-        ArrayList<int> driverIDs = new ArrayList<>();
-        ArrayList<int> passengerIDs = new ArrayList<>();
+        // Separating drivers and passengers IDs
+        ArrayList<Integer> driverIDs = new ArrayList<>();
+        ArrayList<Integer> passengerIDs = new ArrayList<>();
         for (int key : users.keySet()){
             if (users.get(key).isPassenger){
                 passengerIDs.add(key);
@@ -54,8 +55,20 @@ public class Carpool {
                 driverIDs.add(key);
             }
         }
-        for (int key : passengerIDs){
-            //
+        // Binary search to find least distance between driver path and passenger coords
+        ArrayList<Point> d_path;
+        int L;
+        int R;
+        int m;
+        for (Integer p_key : passengerIDs){
+            for (Integer d_key : driverIDs){
+                d_path = map.shortestPath(users.get(d_key).coordA, users.get(d_key).coordB);
+                L = 0;
+                R = d_path.size() - 1;
+                while (L <= R){
+                    m = 1;
+                }
+            }
         }
         return null;
     }
