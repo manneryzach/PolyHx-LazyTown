@@ -5,13 +5,15 @@ import java.util.Objects;
 public class Point implements Comparable {
     public Double x;
     public Double y;
+    public boolean isVisited;
 
     public Point(Double x, Double y) {
         this.x = x;
         this.y = y;
+        this.isVisited = false;
     }
 
-    public Point(){
+    public Point() {
         this.x = 0.0;
         this.y = 0.0;
     }
@@ -24,7 +26,7 @@ public class Point implements Comparable {
         return Math.sqrt(Math.pow((p0.x - p1.x), 2) + Math.pow((p0.y - p1.y), 2));
     }
 
-    public static Point transform(Point p){
+    public static Point transform(Point p) {
         double x = p.x;
         double y = p.y;
         double scale_factor = 5.0;

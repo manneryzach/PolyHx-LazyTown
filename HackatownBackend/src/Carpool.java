@@ -26,15 +26,15 @@ public class Carpool {
     }
 
     // Custom methods
+    public UserPair findMatches() {
+        return findMatches(new ArrayList<>(users.keySet()));
+    }
+
     public UserPair findMatches(ArrayList<Integer> userIDs) {
-        // TODO Fill in code for findMatches1
+        // TODO Fill in code for findMatches
         return null;
     }
 
-    public UserPair findMatches() {
-        // TODO Fill in code for findMatches1
-        return null;
-    }
 
     // Helper methods
     private Point findClosestVertex(int userId) {
@@ -70,6 +70,7 @@ public class Carpool {
 
     // Pruning process
     private ArrayList<UserPair> getPossibleCombinations(ArrayList<Integer> userIDs) {
+        // Fixme Changed user pair to contain users and not userIDs (line 108 broken)
         // Separating drivers and passengers IDs
         ArrayList<Integer> driverIDs = new ArrayList<>();
         ArrayList<Integer> passengerIDs = new ArrayList<>();
