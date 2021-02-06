@@ -9,6 +9,11 @@ public class Point implements Comparable {
         this.y = y;
     }
 
+    public Point(){
+        this.x = 0.0;
+        this.y = 0.0;
+    }
+
     // returns <0 if this smaller than p, =0 if equal and >0 if bigger
     public int compareTo(Object p) {
         if (!(p instanceof Point))

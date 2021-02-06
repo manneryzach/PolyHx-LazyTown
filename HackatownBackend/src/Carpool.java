@@ -3,10 +3,10 @@ import java.util.*;
 public class Carpool {
     // Fields
     private RoadNetwork map;
-    private HashMap<Integer, Double[][]> users;
+    private HashMap<Integer, User> users;
 
     // Constructors
-    public Carpool(String JSONPAth, HashMap<Integer, Double[][]> users) throws Exception {
+    public Carpool(String JSONPAth, HashMap<Integer, User> users) throws Exception {
         this.map = new RoadNetwork(JSONPAth);
         this.users = users;
     }
@@ -16,7 +16,7 @@ public class Carpool {
     }
 
     // Accessors
-    public HashMap<Integer, Double[][]> getUsers() {
+    public HashMap<Integer, User> getUsers() {
         return this.users;
     }
 
@@ -48,13 +48,15 @@ public class Carpool {
         ArrayList<int> driverIDs = new ArrayList<>();
         ArrayList<int> passengerIDs = new ArrayList<>();
         for (int key : users.keySet()){
-            if (users.get(key)[0][0] == 1.0){
+            if (users.get(key).isPassenger){
                 passengerIDs.add(key);
             }else{
                 driverIDs.add(key);
             }
         }
-        Double[] p_coords;
+        for (int key : passengerIDs){
+            //
+        }
         return null;
     }
 

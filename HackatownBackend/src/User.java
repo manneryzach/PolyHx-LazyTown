@@ -2,20 +2,20 @@ import java.util.*;
 
 public class User{
     boolean isPassenger;
-    Double[] coords;
-    Double[] coordA;
-    Double[] coordB;
+    Point coords;
+    Point coordA;
+    Point coordB;
 
-    public User(Double[] coords){
+    public User(Point coords, Point coordA, Point coordB){
         this.isPassenger = true;
         this.coords = coords;
-        this.coordA = [0];
-        this.coordB = [0];
+        this.coordA = coordA;
+        this.coordB = coordB;
     }
 
-    public User(Double[] coordA, Double[] coordB){
+    public User(Point coordA, Point coordB){
         this.isPassenger = false;
-        this.coords = [0];
+        this.coords = new Point();
         this.coordA = coordA;
         this.coordB = coordB;
     }

@@ -23,7 +23,7 @@ public class RoadNetwork {
     // Mutators
 
     // Custom methods
-    public ArrayList<Road> shortestPath(Double[] coordA, Double[] coordB) {
+    public ArrayList<Point> shortestPath(Point coordA, Point coordB) {
         // TODO Fill in code for shortestPath
         return null;
     }
