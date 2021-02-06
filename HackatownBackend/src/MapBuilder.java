@@ -35,10 +35,6 @@ public class MapBuilder {
                     if (road_speed > 65) road_speed = 65;
                     if (road_speed < 25) road_speed = 25;
 
-
-                    // Update road coordinates in next for loop instead
-                    Road road = new Road(name, direction, road_speed);
-
                     Iterator iter = coords.iterator();
 
                     Object p0_temp =  iter.next();
@@ -62,22 +58,12 @@ public class MapBuilder {
                                 network.put(p1, hash_roads);
                             } else network.get(p1).add(new Road(name, p1, p0, road_speed));
                         }
+
                         // Update pointers
                         DataTypes.Point temp = new DataTypes.Point(p1.x, p1.y);
                         p1_temp = iter.next();
                         p1 = new Point((Double) ((JSONArray) p1_temp).get(0), (Double) ((JSONArray) p1_temp).get(1));
                         p0 = temp;
-                    }
-
-                    for (Object elem : coords) {
-                        Point p = new Point((Double) ((JSONArray) elem).get(0), (Double) ((JSONArray) elem).get(1));
-                        road.getCoordinates().add(p);
-
-                        if (network.get(p) == null) {
-                            ArrayList<Road> hash_roads = new ArrayList<>();
-                            hash_roads.add(road);
-                            network.put(p, hash_roads);
-                        } else network.get(p).add(road);
                     }
                 }
             }
