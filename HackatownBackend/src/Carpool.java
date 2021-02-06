@@ -45,6 +45,16 @@ public class Carpool {
     // Pruning process
     private ArrayList<UserPair> getPossibleCombinations(ArrayList<Integer> userIDs) {
         // TODO fill in code
+        ArrayList<int> driverIDs = new ArrayList<>();
+        ArrayList<int> passengerIDs = new ArrayList<>();
+        for (int key : users.keySet()){
+            if (users.get(key)[0][0] == 1.0){
+                passengerIDs.add(key);
+            }else{
+                driverIDs.add(key);
+            }
+        }
+        Double[] p_coords;
         return null;
     }
 
