@@ -7,9 +7,8 @@ import java.util.*;
 import java.text.ParseException;
 
 public class MapBuilder {
-    public static ArrayList<Road> parser(String file_path) throws Exception{
+    public static HashMap<Double[], ArrayList<Road>> parser(String file_path) throws Exception{
         JSONParser parser = new JSONParser();
-        ArrayList<Road> network = new ArrayList<Road>();
 
         try(Reader reader = new FileReader("./routes.json")){
             JSONObject obj = (JSONObject) parser.parse(reader);
@@ -42,11 +41,15 @@ public class MapBuilder {
                 for (Double[] elem : coords){
                     if (network.get(elem) == null){
                         ArrayList<Road> hash_roads = new ArrayList<Road>();
-                        cds_roads.add(elem);
-                        network.put(elem,)
+                        cds_roads.add(road);
+                        network.put(elem, hash_roads);
+                    }else if(network.get(elem) != null){
+                        network.replace(elem, network.get(elem).add(road));
                     }
                 }
-
             }
+
+            return network;
+        }
     }
 }
