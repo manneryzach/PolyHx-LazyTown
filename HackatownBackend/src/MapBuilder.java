@@ -21,7 +21,6 @@ public class MapBuilder {
             for (Object street : roads) {
                 JSONObject geometry = (JSONObject) ((JSONObject) street).get("geometry");
                 JSONArray coords = (JSONArray) geometry.get("coordinates");
-                //System.out.println(coords.get(0) instanceof Double[]);
 
                 JSONObject properties = (JSONObject) ((JSONObject) street).get("properties");
 
