@@ -74,7 +74,7 @@ public class Carpool {
         ArrayList<Integer> driverIDs = new ArrayList<>();
         ArrayList<Integer> passengerIDs = new ArrayList<>();
 
-        double cutoff = 0.5; // TODO find right cutoff value
+        double cutoff = 0.5; // Maybe wrong cutoff
 
         ArrayList<UserPair> pairs = new ArrayList<>();
 
