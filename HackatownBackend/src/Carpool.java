@@ -49,7 +49,7 @@ public class Carpool {
     }
 
     // Finds the best path for each user (needs to be adapted to optimize for every user)
-    private ArrayList<Road> bestPath(ArrayList<ArrayList<Road>> roads) {
+    private ArrayList<Double[]> bestPath(ArrayList<ArrayList<Road>> roads) {
         // TODO Fill in code for bestPath
         return null;
     }
