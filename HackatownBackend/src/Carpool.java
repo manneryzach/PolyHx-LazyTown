@@ -41,27 +41,27 @@ public class Carpool {
         return findClosestVertex(users.get(userId).coordA);
     }
 
-    private double triangleMedian(Point A, Point B, Point C){
+    private double triangleMedian(Point A, Point B, Point C) {
         // Apollonius Theorem
         double b = Point.eucDist(A, B);
         double c = Point.eucDist(A, C);
-        double m = Point.eucDist(B, C)/2;
-        return (Math.sqrt((Math.pow(b,2)+Math.pow(c,2))/2) - Math.pow(m,2));
+        double m = Point.eucDist(B, C) / 2;
+        return (Math.sqrt((Math.pow(b, 2) + Math.pow(c, 2)) / 2) - Math.pow(m, 2));
     }
 
     private Point findClosestVertex(Point coord) {
         // Binary search
         int L = 0;
         int R = map.getSortedCoordinates().size() - 1;
-        int m;
+        int m = (L + R) / 2;
         double c_norm = Point.eucNorm(coord);
-        while (L<=R){
-            m = (L+R)/2;
-            if (Point.eucNorm(map.getSortedCoordinates().get(m)) < c_norm){
+        while (L <= R) {
+            m = (L + R) / 2;
+            if (Point.eucNorm(map.getSortedCoordinates().get(m)) < c_norm) {
                 L = m + 1;
-            }else if (Point.eucNorm(map.getSortedCoordinates().get(m)) > c_norm){
+            } else if (Point.eucNorm(map.getSortedCoordinates().get(m)) > c_norm) {
                 R = m - 1;
-            }else{
+            } else {
                 break;
             }
         }
@@ -96,13 +96,11 @@ public class Carpool {
         int mB = 0;
         double pA_norm;
         double pB_norm;
-        point cA;
-        point cB;
         int mA2 = 0;
         int mB2 = 0;
         for (Integer p_key : passengerIDs) {
-            cA = findClosestVertex(users.get(p_key));
-            cB = findClosestVertex(users.get(p_key));
+            Point cA = findClosestVertex(users.get(p_key).coordA);
+            Point cB = findClosestVertex(users.get(p_key).coordB);
             pA_norm = Point.eucNorm(cA);
             pB_norm = Point.eucNorm(cB);
             for (Integer d_key : driverIDs) {
@@ -126,28 +124,28 @@ public class Carpool {
                 // Binary search coord B
                 while (LB <= RB) {
                     mB = (LB + RB) / 2;
-                    if (Point.eucNorm(d_path.get(mB)) > pB_norm) {
+                    if (Point.eucNorm(d_path.get(mB)) > pB_norm)
                         RB = mA - 1;
-                    } else if (Point.eucNorm(d_path.get(mB)) < pB_norm) {
+                    else if (Point.eucNorm(d_path.get(mB)) < pB_norm)
                         LB = mB + 1;
-                    } else {
+                    else
                         break;
-                    }
+
                 }
-                // FIXME Make it an interval
-                if (Point.eucNorm(d_path(mA)) > pA_norm){
+
+                if (Point.eucNorm(d_path.get(mA)) > pA_norm)
                     mA2 = mA + 1;
-                }else{
+                else
                     mA2 = mA - 1;
-                }
-                if (Point.eucNorm(d_path(mB)) > pA_norm){
+
+                if (Point.eucNorm(d_path.get(mB)) > pA_norm)
                     mB2 = mB + 1;
-                }else{
+                else
                     mB2 = mB - 1;
-                }
-                if (triangleMedian(cA, d_path(mA),d_path(mA2)) < cutoff && triangleMedian(cB, d_path(mB), d_path(mB2)) < cutoff) {
+
+                if (triangleMedian(cA, d_path.get(mA), d_path.get(mA2)) < cutoff &&
+                        triangleMedian(cB, d_path.get(mB), d_path.get(mB2)) < cutoff)
                     pairs.add(new UserPair(users.get(p_key), users.get(d_key)));
-                }
             }
         }
         return pairs;

@@ -27,6 +27,13 @@ public class Road {
         this.roadSpeed = roadSpeed;
     }
 
+    public Road(String name, int roadSpeed) {
+        this.name = name;
+        this.coordinates = new LinkedList<>();
+        this.direction = direction;
+        this.roadSpeed = roadSpeed;
+    }
+
     // Accessors
     public String getName() {
         return name;
