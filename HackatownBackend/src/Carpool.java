@@ -6,12 +6,12 @@ public class Carpool {
     private HashMap<Integer, Double[][]> users;
 
     // Constructors
-    public Carpool(String JSONPAth, HashMap<Integer, Double[][]> users) {
+    public Carpool(String JSONPAth, HashMap<Integer, Double[][]> users) throws Exception {
         this.map = new RoadNetwork(JSONPAth);
         this.users = users;
     }
 
-    public Carpool(String JSONPAth) {
+    public Carpool(String JSONPAth) throws Exception {
         this.map = new RoadNetwork(JSONPAth);
     }
 
