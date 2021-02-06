@@ -44,6 +44,7 @@ public class Carpool {
 
     // Pruning process
     private ArrayList<UserPair> getPossibleCombinations(ArrayList<Integer> userIDs) {
+        // Fixme Changed user pair to contain users and not userIDs (line 108 broken)
         // TODO fill in code
         // Separating drivers and passengers IDs
         ArrayList<Integer> driverIDs = new ArrayList<>();
@@ -104,7 +105,7 @@ public class Carpool {
                 }
                 // FIXME Make it an interval
                 if (Point.eucDist(users.get(p_key).coordA, d_path.get(mA)) < cutoff && Point.eucDist(users.get(p_key).coordB, d_path.get(mB)) < cutoff) {
-                    pairs.add(new UserPair(p_key, d_key));
+                    pairs.add(new UserPair(users.get(p_key), users.get(d_key)));
                 }
             }
         }

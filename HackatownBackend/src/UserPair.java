@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 
 public class UserPair {
-    public int passenger;
-    public int driver;
+    public User passenger;
+    public User driver;
     ArrayList<Road> route; // TODO Change to ArrayList<Point>
 
-    public UserPair(int passenger, int driver, ArrayList<Road> route) {
+    public UserPair(User passenger, User driver, ArrayList<Road> route) {
         this.passenger = passenger;
         this.driver = driver;
         this.route = route;
     }
 
-    public UserPair(int passenger, int driver) {
+    public UserPair(User passenger, User driver) {
         this.passenger = passenger;
         this.driver = driver;
     }
