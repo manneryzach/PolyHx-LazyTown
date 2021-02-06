@@ -39,7 +39,7 @@ public class RoadNetwork {
      * @param coordB End point
      * @return A sequence of intersection representing the optimal route.
      * **/
-    public ArrayList<Point> shortestPath(Point coordA, Point coordB) {
+    public LinkedList<Point> shortestPath(Point coordA, Point coordB) {
         if(!roads.containsKey(coordA) || !roads.containsKey(coordB))
             throw new IllegalArgumentException("Coordinates must be intersections on the map");
 
@@ -55,6 +55,7 @@ public class RoadNetwork {
             Point u = findMin(vertices);
 
             vertices.remove(u);
+            if (u.equals(coordA)) break;
 
             for (Road outRoad : roads.get(u)) {
                 Double alt = u.getDist() + outRoad.getWeight();
@@ -64,21 +65,15 @@ public class RoadNetwork {
                 }
             }
         }
-        LinkedList<Point> route
 
-            //Somehow import the graph/the roads
-                //Start from PointA
+        LinkedList<Point> route = new LinkedList<>();
+        Point u = coordB;
+        while (u.getPrev() != null && u != coordA) {
+            route.addFirst(u);
+            u = u.getPrev();
+        }
 
-                //LOOP UNTIL ALL INTERSECTIONS ARE VISITED
-                // {
-                      //Check all roads connected to the current point
-                      //Check the weighted distance to the Next Intersection
-                         //Change value of that Intersection to the smallest weight available (through addition)
-                         //Change node to visited once all paths are checked and the smallest weight is found
-                // }
-
-
-        return null;
+        return route;
     }
 
     private Point findMin(ArrayList<Point> vertices) {
