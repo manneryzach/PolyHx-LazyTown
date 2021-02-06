@@ -39,4 +39,13 @@ public class Carpool {
         return null;
     }
 
+    // Helper methods
+    private Road findClosestRoad(int userId) {
+        return null;
+    }
+
+    // Finds the best path for each user (needs to be adapted to optimize for every user)
+    private ArrayList<Road> bestPath(ArrayList<ArrayList<Road>> roads) {
+        return null;
+    }
 }
