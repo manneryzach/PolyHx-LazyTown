@@ -26,15 +26,15 @@ public class Carpool {
     }
 
     // Custom methods
+    public UserPair findMatches() {
+        return findMatches(new ArrayList<>(users.keySet()));
+    }
+
     public UserPair findMatches(ArrayList<Integer> userIDs) {
         // TODO Fill in code for findMatches1
         return null;
     }
 
-    public UserPair findMatches() {
-        // TODO Fill in code for findMatches2
-        return null;
-    }
 
     // Helper methods
     private Point findClosestVertex(int userId) {
