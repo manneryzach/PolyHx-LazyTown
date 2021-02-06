@@ -43,6 +43,18 @@ public class RoadNetwork {
         if(!roads.containsKey(coordA) || !roads.containsKey(coordB))
             throw new IllegalArgumentException("Coordinates must be intersections on the map");
         // TODO Fill in code for shortestPath
+            //Somehow import the graph/the roads
+                //Start from PointA
+
+                //LOOP UNTIL ALL INTERSECTIONS ARE VISITED
+                // {
+                      //Check all roads connected to the current point
+                      //Check the weighted distance to the Next Intersection
+                         //Change value of that Intersection to the smallest weight available (through addition)
+                         //Change node to visited once all paths are checked and the smallest weight is found
+                // }
+
+
         return null;
     }
 
