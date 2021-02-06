@@ -12,7 +12,7 @@ public class Drawing extends Canvas {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Map of montreal");
         Canvas canvas = new Drawing();
-        canvas.setSize(400, 400);
+        canvas.setSize(800, 800);
         frame.add(canvas);
         frame.pack();
         frame.setVisible(true);
@@ -21,7 +21,7 @@ public class Drawing extends Canvas {
     // Draws the map of montreal
     public void paint(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        RoadNetwork map = new RoadNetwork("./routes.json");
+        RoadNetwork map = new RoadNetwork("./data/routes.json");
         ArrayList<DataTypes.Point> coords = map.getSortedCoordinates();
         ArrayList<Road> uniqueRoads = new ArrayList<>();
 

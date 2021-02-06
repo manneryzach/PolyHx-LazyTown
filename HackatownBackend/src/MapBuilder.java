@@ -12,7 +12,7 @@ public class MapBuilder {
     public static HashMap<Point, ArrayList<Road>> parser(String file_path) throws Exception {
         JSONParser parser = new JSONParser();
 
-        try (Reader reader = new FileReader("./routes.json")) {
+        try (Reader reader = new FileReader(file_path)) {
             JSONObject obj = (JSONObject) parser.parse(reader);
             JSONArray roads = (JSONArray) obj.get("features");
 
@@ -26,7 +26,7 @@ public class MapBuilder {
 
                 String hood = (String) properties.get("ARR_DRT");
 
-                if (hood.equals("Côte-des-Neiges-Notre-Dame-de-Grâce")){
+                if (hood.equals("Côte-des-Neiges-Notre-Dame-de-Grâce")) {
                     String name = (String) properties.get("NOM_VOIE");
                     Long direction = (Long) properties.get("SENS_CIR");
 
