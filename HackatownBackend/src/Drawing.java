@@ -30,32 +30,46 @@ public class Drawing extends Canvas {
         // Get unique roads
         for (DataTypes.Point p : coords) {
             for (Road r : map.getRoad(p))
-                if(!uniqueRoads.contains(r)) uniqueRoads.add(r);
+                if (!uniqueRoads.contains(r)) uniqueRoads.add(r);
         }
 
-        // Draw each road on the map. A road segment is represented by a line (p0, p1)
-        for (Road r: uniqueRoads) {
-            // Helps for visualization
-            g2.setColor(new Color(r.getRoadSpeed(), r.getRoadSpeed(), r.getRoadSpeed()));
-
-            //
-            Iterator iter = r.getCoordinates().iterator();
-            DataTypes.Point p0 = (DataTypes.Point) iter.next();
-            Point p1 = (DataTypes.Point) iter.next();
-
-            while(iter.hasNext()) {
+        for (Point p0 : coords) {
+            for (Road r : map.getRoad(p0)) {
+                Point p1 = r.getNextRoad();
+                // Linear transformation
                 Point p0_trans = Point.transform(p0);
                 Point p1_trans = Point.transform(p1);
+
                 System.out.println("Plotting line from " + p0_trans + " to " + p1_trans + " with speed " + r.getRoadSpeed());
                 Point2D point0 = new Point2D.Double(p0_trans.x, p0_trans.y);
                 Point2D point1 = new Point2D.Double(p1_trans.x, p1_trans.y);
                 g2.draw(new Line2D.Double(point0, point1));
-
-                // Update pointers
-                DataTypes.Point temp = new DataTypes.Point(p1.x, p1.y);
-                p1 = (DataTypes.Point) iter.next();
-                p0 = temp;
             }
+
+//        // Draw each road on the map. A road segment is represented by a line (p0, p1)
+//        for (Road r: uniqueRoads) {
+//            // Helps for visualization
+//            g2.setColor(new Color(r.getRoadSpeed(), r.getRoadSpeed(), r.getRoadSpeed()));
+//
+//            //
+//            Iterator iter = r.getCoordinates().iterator();
+//            DataTypes.Point p0 = (DataTypes.Point) iter.next();
+//            Point p1 = (DataTypes.Point) iter.next();
+//
+//            while(iter.hasNext()) {
+//                Point p0_trans = Point.transform(p0);
+//                Point p1_trans = Point.transform(p1);
+//                System.out.println("Plotting line from " + p0_trans + " to " + p1_trans + " with speed " + r.getRoadSpeed());
+//                Point2D point0 = new Point2D.Double(p0_trans.x, p0_trans.y);
+//                Point2D point1 = new Point2D.Double(p1_trans.x, p1_trans.y);
+//                g2.draw(new Line2D.Double(point0, point1));
+//
+//                // Update pointers
+//                DataTypes.Point temp = new DataTypes.Point(p1.x, p1.y);
+//                p1 = (DataTypes.Point) iter.next();
+//                p0 = temp;
+//            }
+//        }
         }
         System.out.println("Done");
     }
