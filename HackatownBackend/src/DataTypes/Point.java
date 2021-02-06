@@ -27,7 +27,7 @@ public class Point implements Comparable {
     public static Point transform(Point p){
         double x = p.y;
         double y = p.x;
-        double scale_factor = 5;
+        double scale_factor = 0.001;
         x = x - (-73.55011);
         y = y - (45.5123);
         x = x*(108.6)*scale_factor;
