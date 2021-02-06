@@ -14,7 +14,7 @@ public class MapBuilder {
             JSONObject obj = (JSONObject) parser.parse(reader);
             JSONArray roads = (JSONArray) obj.get("features");
 
-            HashMap<Double[], ArrayList<Road>> network = new HashMap<Double[], ArrayList<Road>>;
+            HashMap<Double[], ArrayList<Road>> network = new HashMap<>();
 
             for (Object street : roads){
                 JSONObject geometry = (JSONObject) ((JSONObject) street).get("geometry");
