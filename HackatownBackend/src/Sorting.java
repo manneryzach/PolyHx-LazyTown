@@ -18,7 +18,7 @@ public class Sorting {
         int wall = left - 1;
 
         for (int i = left; i < right; i++) {
-            if (elements.get(i).compareTo(pivot) > 0) {
+            if (elements.get(i).compareTo(pivot) < 0) {
                 wall++;
                 if (i != wall) swap(elements, i, wall);
             }
