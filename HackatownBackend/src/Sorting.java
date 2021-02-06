@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Sorting {
-    private static <E extends Comparable> void quickSort(ArrayList<E> elements, int left, int right) {
+    public static <E extends Comparable> void quickSort(ArrayList<E> elements, int left, int right) {
         if (left < right) {
             int i = placeAndDivide(elements, left, right);
             quickSort(elements, left, i - 1);

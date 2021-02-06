@@ -10,4 +10,9 @@ public class UserPair {
         this.driver = driver;
         this.route = route;
     }
+
+    public UserPair(int passenger, int driver) {
+        this.passenger = passenger;
+        this.driver = driver;
+    }
 }
