@@ -40,6 +40,7 @@ public class Carpool {
 
         ArrayList<UserPair> base = new ArrayList<>();
 
+
         ArrayList<Integer> driverIDs = new ArrayList<>();
         ArrayList<Integer> passengerIDs = new ArrayList<>();
 
@@ -77,16 +78,21 @@ public class Carpool {
     public ArrayList<UserPair> findMatches(HashMap<Integer, ArrayList<Integer>> driver_passengers, HashMap<Integer, ArrayList<Integer>> passenger_drivers){
         ArrayList<UserPair> pairs = new ArrayList<>();
         // Base Case
+        if (passenger_drivers.keySet().size() != 1){
+            for (int passenger : passenger_drivers.keySet()){
+                ArrayList<Integer> drivers = passenger_drivers.get(passenger);
+                // Pop last
+                Integer driver = drivers.get(drivers.size() - 1);
+                drivers.remove(drivers.size() - 1);
+                for (int passenger2 : driver_passengers.get(driver))
+                    passenger_drivers.get(passenger2).remove(driver);
 
-        for (int passenger : passenger_drivers.keySet()){
-            ArrayList<Integer> drivers = passenger_drivers.get(passenger);
-            // Pop last
-            Integer driver = drivers.get(drivers.size() - 1);
-            drivers.remove(drivers.size() - 1);
-            for (int passenger2 : driver_passengers.get(driver))
-                passenger_drivers.get(passenger2).remove(driver);
-
-            pairs.addAll(findMatches(driver_passengers, passenger_drivers));
+                pairs.addAll(findMatches(driver_passengers, passenger_drivers));
+            }
+        }else{
+            for (int passenger : passenger_drivers.keySet()){
+                //
+            }
         }
         return pairs;
     }
