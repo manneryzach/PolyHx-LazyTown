@@ -50,8 +50,8 @@ public class Drawing extends Canvas {
         Point A = null;
         Point B = null;
         try {
-            A = carCool.findClosestVertex(new Point(-73.5764252813395, 45.492250906316));
-            B = carCool.findClosestVertex(new Point(-73.6525340761009, 45.4936901927549));
+            A = carCool.findClosestVertex(new Point(-73.5552140552382, 45.5268750230444));
+            B = carCool.findClosestVertex(new Point(-73.5764252813395, 45.492250906316));
         } catch (Exception e) {
             e.printStackTrace();
         }
