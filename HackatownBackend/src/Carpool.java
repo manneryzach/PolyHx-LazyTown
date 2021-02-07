@@ -35,8 +35,8 @@ public class Carpool {
         ArrayList<int> driverIDs = new ArrayList<>();
         ArrayList<int> passengerIDs = new ArrayList<>();
 
-        HashMap<int, ArrayList<int>> driver_passengers = new HashMap<>();
-        HashMap<int, ArrayList<int>> passenger_drivers = new HashMap<>();
+        HashMap<int, ArrayList<Integer>> driver_passengers = new HashMap<>();
+        HashMap<int, ArrayList<Integer>> passenger_drivers = new HashMap<>();
 
         for (UserPair pair : pairs){
             driverIDs.add(pair.driverID);
