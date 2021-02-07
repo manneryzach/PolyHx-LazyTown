@@ -74,7 +74,7 @@ public class RoadNetwork {
             Node u = vertices.poll();
 
             vertices.remove(u);
-            if (u.p.equals(coordA)) break;
+            if (u.p.equals(coordB)) break;
 
             for (Road outRoad : roads.get(u.p)) {
                 Double alt = u.getDist() + outRoad.getWeight();
