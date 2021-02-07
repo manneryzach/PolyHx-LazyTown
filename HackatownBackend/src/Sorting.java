@@ -54,7 +54,7 @@ public class Sorting {
 //        return high;
     }
 
-    private static <E> void swap(ArrayList<E> elements, int index1, int index2) {
+    public static <E> void swap(ArrayList<E> elements, int index1, int index2) {
         E temp = elements.get(index1);
         elements.set(index1, elements.get(index2));
         elements.set(index2, temp);
