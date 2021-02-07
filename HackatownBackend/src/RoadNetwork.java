@@ -116,31 +116,44 @@ public class RoadNetwork {
     }
 
     public ArrayList<Point> shortestPath(Point coordA, Point coordB) {
-        ArrayList<Point> coords = new ArrayList<>(roads.keySet());
+        if (!roads.containsKey(coordA) || !roads.containsKey(coordB))
+            throw new IllegalArgumentException("Coordinates must be intersections on the map");
+
+        ArrayList<Point> coords = new ArrayList<>();
+
+        // coords.add(new Point());
+        coords.addAll(roads.keySet());
+        Sorting.swap(coords, 1, coords.indexOf(coordA));
+        // Set all vertices dist to infty
+
+        coords.get(1).setDist(0.);
 
         // Heap-ify array
-        for (int i = 1; i < coords.size() / 2; i++) MinHeapify(coords, i);
+        //for (int i = 1; i < coords.size() / 2; i++) MinHeapify(coords, i);
 
         while (!coords.isEmpty()) {
             // Remove point u from heap (slow but can be faster using avl)
-            Point u = coords.get(1);
+            Point u = findMin(coords);
+            coords.remove(u);
+
             // Swap last and remove u
-            coords.set(1, coords.get(coords.size() - 1));
-            coords.remove(coords.size() - 1);
-            MinHeapify(coords, 1);
+            // coords.set(1, coords.get(coords.size() - 1));
+            // coords.remove(coords.size() - 1);
+            // MinHeapify(coords, 1);
 
             if (u.equals(coordB)) break;
 
             for (Road outRoad : roads.get(u)) {
                 // Only visit new nodes
                 Point v = outRoad.getNextPoint();
-                if (v.isVisited) continue;
+                if (!v.isVisited) {
 
-                Double alt = u.getDist() + outRoad.getWeight();
+                    Double alt = u.getDist() + outRoad.getWeight();
 
-                if (alt < outRoad.getNextPoint().getDist()) {
-                    v.setDist(alt);
-                    v.setPrev(u);
+                    if (alt < outRoad.getNextPoint().getDist()) {
+                        v.setDist(alt);
+                        v.setPrev(u);
+                    }
                 }
             }
         }
@@ -154,6 +167,17 @@ public class RoadNetwork {
         }
 
         return new ArrayList<>(route);
+    }
+
+    private Point findMin(ArrayList<Point> coords) {
+        Point min = new Point();
+        min.setDist(Double.MAX_VALUE);
+
+        for (Point p : coords) {
+            if (p.getDist() < min.getDist())
+                min = p;
+        }
+        return min;
     }
 
     private class Node implements Comparable {
