@@ -99,9 +99,18 @@ public class RoadNetwork {
     public ArrayList<Point> shortestPathHeap(Point coordA, Point coordB) {
         ArrayList<Point> coords = new ArrayList<>(roads.keySet());
 
+        // Heap-ify array
         for (int i = 1; i < coords.size() / 2 ; i++) {
 
         }
+
+        while (!coords.isEmpty()) {
+            // Remove point u from heap
+            Point u =
+        }
+
+
+
 
         return null;
     }
