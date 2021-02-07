@@ -96,6 +96,6 @@ public class Point implements Comparable {
 
     @Override
     public String toString() {
-        return "(" + this.x + ", " + this.y + ")";
+        return "{(" + this.x + ", " + this.y + "), Dist= " + this.dist + "prev= " + this.prev + "}";
     }
 }

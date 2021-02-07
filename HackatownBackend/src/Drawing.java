@@ -34,7 +34,7 @@ public class Drawing extends Canvas {
                 Point p0_trans = Point.transform(p0);
                 Point p1_trans = Point.transform(p1);
 
-                System.out.println("Plotting line from " + p0 + " to " + p1 + " with speed " + r.getRoadSpeed());
+                // System.out.println("Plotting line from " + p0 + " to " + p1 + " with speed " + r.getRoadSpeed());
                 Point2D point0 = new Point2D.Double(p0_trans.x, p0_trans.y);
                 Point2D point1 = new Point2D.Double(p1_trans.x, p1_trans.y);
                 g2.draw(new Line2D.Double(point0, point1));
