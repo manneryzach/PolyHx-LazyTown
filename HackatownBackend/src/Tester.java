@@ -36,7 +36,7 @@ public class Tester {
 
         Point[] p = {new Point(),a,b,c,d,e,f,g,h,i};
         ArrayList<Point> points = new ArrayList<>(Arrays.asList(p));
-        for (int j = 1; j < points.size() / 2; j++) {
+        for (int j = 1 ; j < (points.size() - 1) / 2; j++) {
             RoadNetwork.MinHeapify(points, j);
         }
 

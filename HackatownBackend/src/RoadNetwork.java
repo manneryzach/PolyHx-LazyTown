@@ -37,13 +37,13 @@ public class RoadNetwork {
         int r = 2*i+1;
         int n = points.size();
         int smallest;
-        if (l <= n && points.get(l).getDist() > points.get(i).getDist())
+        if (l <= n && points.get(l) != null && points.get(l).getDist() > points.get(i).getDist())
             smallest = i;
         else
             smallest = l;
-        if (r <= n && points.get(r).getDist() < points.get(smallest).getDist())
+        if (r <= n && points.get(r) != null && points.get(r).getDist() < points.get(smallest).getDist())
             smallest = r;
-        if (smallest != i) {
+        if (smallest != i && points.get(i) != null) {
             Sorting.swap(points, i, smallest);
             MinHeapify(points, smallest);
         }
@@ -57,7 +57,7 @@ public class RoadNetwork {
      * @param coordB End point
      * @return A sequence of intersection representing the optimal route.
      * **/
-    public ArrayList<Point> shortestPath(Point coordA, Point coordB) {
+    public ArrayList<Point> shortestPathNoHeap(Point coordA, Point coordB) {
         if(!roads.containsKey(coordA) || !roads.containsKey(coordB))
             throw new IllegalArgumentException("Coordinates must be intersections on the map");
 
@@ -114,7 +114,7 @@ public class RoadNetwork {
         return new ArrayList<>(route);
     }
 
-    public ArrayList<Point> shortestPathHeap(Point coordA, Point coordB) {
+    public ArrayList<Point> shortestPath(Point coordA, Point coordB) {
         ArrayList<Point> coords = new ArrayList<>(roads.keySet());
 
         // Heap-ify array
