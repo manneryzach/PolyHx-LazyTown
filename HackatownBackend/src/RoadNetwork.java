@@ -119,6 +119,8 @@ public class RoadNetwork {
         if (!roads.containsKey(coordA) || !roads.containsKey(coordB))
             throw new IllegalArgumentException("Coordinates must be intersections on the map");
 
+
+        System.out.println("finding shortest path");
         ArrayList<Point> coords = new ArrayList<>();
 
         // coords.add(new Point());
@@ -127,6 +129,7 @@ public class RoadNetwork {
         // Set all vertices dist to infty
 
         coords.get(1).setDist(0.);
+        Point endCoords = new Point();
 
         // Heap-ify array
         //for (int i = 1; i < coords.size() / 2; i++) MinHeapify(coords, i);
@@ -141,38 +144,51 @@ public class RoadNetwork {
             // coords.remove(coords.size() - 1);
             // MinHeapify(coords, 1);
 
-            if (u.equals(coordB)) break;
-
-            for (Road outRoad : roads.get(u)) {
-                // Only visit new nodes
-                Point v = outRoad.getNextPoint();
-                Double alt = u.getDist() + outRoad.getWeight();
-
-                if (alt < v.getDist()) {
-                    v.setDist(alt);
-                    v.setPrev(u);
-                }
-                System.out.println(v);
+            if (u.equals(coordB)) {
+                endCoords = u;
+                break;
             }
+
+            if(roads.get(u) != null) {
+                for (Road outRoad : roads.get(u)) {
+                    // Only visit new nodes
+                    Point v = outRoad.getNextPoint();
+                    if (coords.contains(v)) {
+                        Double alt = u.getDist() + outRoad.getWeight();
+
+                        if (alt < v.getDist()) {
+                            v.setDist(alt);
+                            v.setPrev(u);
+                        }
+                        System.out.println(v);
+                    }
+                }
+            }
+            System.out.println(coords.size());
         }
 
+        System.out.println("Backtracking...");
 
         LinkedList<Point> route = new LinkedList<>();
-        Point u = coordB;
-        while (u.getPrev() != null && !u.equals(coordA)) {
-            route.addFirst(u);
-            u = u.getPrev();
+        Point u = endCoords;
+        System.out.println(endCoords);
+        if (u.getPrev() != null || u.equals(coordB)) {
+            while (u != null) {
+                route.addFirst(u);
+                u = u.getPrev();
+            }
         }
-
+        System.out.println(new ArrayList<>(route));
         return new ArrayList<>(route);
+
     }
 
     private Point findMin(ArrayList<Point> coords) {
         Point min = new Point();
-        min.setDist(Double.MAX_VALUE);
+        min.setDist(-1.);
 
         for (Point p : coords) {
-            if (p.getDist() < min.getDist())
+            if (min.getDist() == -1 ||  p.getDist() < min.getDist())
                 min = p;
         }
         return min;
