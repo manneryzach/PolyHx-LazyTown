@@ -41,7 +41,9 @@ public class Carpool {
         for (UserPair pair : pairs){
             driverIDs.add(pair.driverID);
             if (!driver_passengers.containsKey(pair.driverID)){
-                //
+                driver_passengers.put(pairs.driverID, new ArrayList<>(Arrays.tolist(pair.passengerID)));
+            // }else if (){
+                // driver_passen
             }
             passengerIDs.add(pair.passengerID);
 
@@ -71,7 +73,7 @@ public class Carpool {
         return (Math.sqrt((Math.pow(b, 2) + Math.pow(c, 2)) / 2) - Math.pow(m, 2));
     }
 
-    private Point findClosestVertex(Point coord) {
+    public Point findClosestVertex(Point coord) {
         // Binary search
         int L = 0;
         int R = map.getSortedCoordinates().size() - 1;
