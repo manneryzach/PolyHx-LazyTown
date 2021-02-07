@@ -38,6 +38,8 @@ public class Carpool {
     public UserPair findMatches(ArrayList<Integer> userIDs) {
         ArrayList<UserPair> pairs = getPossibleCombinations(userIDs);
 
+        ArrayList<UserPair> base = new ArrayList<>();
+
         ArrayList<Integer> driverIDs = new ArrayList<>();
         ArrayList<Integer> passengerIDs = new ArrayList<>();
 
