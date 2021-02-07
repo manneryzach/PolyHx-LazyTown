@@ -20,6 +20,10 @@ public class Carpool {
         this.map = new RoadNetwork(JSONPAth);
     }
 
+    public Carpool() {
+
+    }
+
     // Accessors
     public HashMap<Integer, User> getUsers() {
         return this.users;
