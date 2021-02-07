@@ -36,12 +36,34 @@ public class Carpool {
 
     public UserPair findMatches(ArrayList<UserPair> pairs) {
         // TODO Fill in code for findMatches
+        ArrayList<int> driverIDs = new ArrayList<>();
+        ArrayList<int> passengerIDs = new ArrayList<>();
+
+        HashMap<int, ArrayList<int>> driver_passengers = new HashMap<>();
+        HashMap<int, ArrayList<int>> passenger_drivers = new HashMap<>();
+
+        for (UserPair pair : pairs){
+            driverIDs.add(pair.driverID);
+            if (!driver_passengers.containsKey(pair.driverID)){
+                //
+            }
+            passengerIDs.add(pair.passengerID);
+
+        }
         return null;
     }
 
 
+    //    function findPairs
+    //
+    //    for drivers in P1:
+    //          choose driver
+    //          delete P1 in all other drivers
+    //          return findPairs(next driver)
+    //
+
     // Helper methods
-    private Point findClosestVertex(int userId) {
+    public Point findClosestVertex(int userId) {
         return findClosestVertex(users.get(userId).coordA);
     }
 
@@ -72,14 +94,6 @@ public class Carpool {
         return map.getSortedCoordinates().get(m);
     }
 
-
-//    function findPairs
-//
-//    for drivers in P1:
-//          choose driver
-//          delete P1 in all other drivers
-//          return findPairs(next driver)
-//
 
     // Pruning process
     private ArrayList<UserPair> getPossibleCombinations(ArrayList<Integer> userIDs) {
@@ -157,7 +171,7 @@ public class Carpool {
 
                 if (triangleMedian(cA, d_path.get(mA), d_path.get(mA2)) < cutoff &&
                         triangleMedian(cB, d_path.get(mB), d_path.get(mB2)) < cutoff)
-                    pairs.add(new UserPair(users.get(p_key), users.get(d_key)));
+                    pairs.add(new UserPair(users.get(p_key), users.get(d_key), p_key, d_key));
             }
         }
         return pairs;
@@ -187,6 +201,6 @@ public class Carpool {
             }
             time_score += Point.eucDist(route.get(i),route.get(i+1))/speed;
         }
-        return new UserPair(passenger, driver, route, time_score);
+        return new UserPair(passenger, driver, pair.passengerID, pair.driverID, route, time_score);
     }
 }
