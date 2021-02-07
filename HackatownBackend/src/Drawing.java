@@ -16,7 +16,7 @@ public class Drawing extends Canvas {
         canvas.setSize(1920, 1080);
         frame.add(canvas);
         frame.pack();
-        //frame.setVisible(true);
+        frame.setVisible(true);
     }
 
     // Draws the map of montreal
@@ -46,41 +46,41 @@ public class Drawing extends Canvas {
                 g2.draw(new Line2D.Double(point0, point1));
             }
         }
-
-        Point A = null;
-        Point B = null;
-        try {
-            A = carCool.findClosestVertex(new Point(-73.5764252813395, 45.492250906316));
-            B = carCool.findClosestVertex(new Point(-73.6525340761009, 45.4936901927549));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Finding route from " + A + " to " + B);
-
-        ArrayList<Point> route = map.shortestPath(A, B);
-        Iterator iter = route.iterator();
-        Point p0 = (Point) iter.next();
-        Point p1 = (Point) iter.next();
-
-        do {
-            g2.setColor(new Color(0, 0, 255));
-            g2.setStroke(new BasicStroke(10));
-
-            Point p0_trans = Point.transform(p0);
-            Point p1_trans = Point.transform(p1);
-            System.out.println("Plotting at: (" + p0_trans.x + ", " + p0_trans.y + ")");
-            Point2D point0 = new Point2D.Double(p0_trans.x, p0_trans.y);
-            Point2D point1 = new Point2D.Double(p1_trans.x, p1_trans.y);
-            g2.draw(new Rectangle2D.Double(p1_trans.x, p1_trans.y, 50, 50));
-            g2.draw(new Rectangle2D.Double(p0_trans.x, p0_trans.y, 50, 50));
-            g2.draw(new Line2D.Double(point0, point1));
-
-            Point temp = new Point(p1.x, p1.y);
-            p1 = (Point) iter.next();
-            p0 = temp;
-        } while (iter.hasNext());
-
-        System.out.println("Done");
+//
+//        Point A = null;
+//        Point B = null;
+//        try {
+//            A = carCool.findClosestVertex(new Point(-73.5764252813395, 45.492250906316));
+//            B = carCool.findClosestVertex(new Point(-73.6525340761009, 45.4936901927549));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        System.out.println("Finding route from " + A + " to " + B);
+//
+//        ArrayList<Point> route = map.shortestPath(A, B);
+//        Iterator iter = route.iterator();
+//        Point p0 = (Point) iter.next();
+//        Point p1 = (Point) iter.next();
+//
+//        do {
+//            g2.setColor(new Color(0, 0, 255));
+//            g2.setStroke(new BasicStroke(10));
+//
+//            Point p0_trans = Point.transform(p0);
+//            Point p1_trans = Point.transform(p1);
+//            System.out.println("Plotting at: (" + p0_trans.x + ", " + p0_trans.y + ")");
+//            Point2D point0 = new Point2D.Double(p0_trans.x, p0_trans.y);
+//            Point2D point1 = new Point2D.Double(p1_trans.x, p1_trans.y);
+//            g2.draw(new Rectangle2D.Double(p1_trans.x, p1_trans.y, 50, 50));
+//            g2.draw(new Rectangle2D.Double(p0_trans.x, p0_trans.y, 50, 50));
+//            g2.draw(new Line2D.Double(point0, point1));
+//
+//            Point temp = new Point(p1.x, p1.y);
+//            p1 = (Point) iter.next();
+//            p0 = temp;
+//        } while (iter.hasNext());
+//
+//        System.out.println("Done");
     }
 }

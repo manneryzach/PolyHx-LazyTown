@@ -99,7 +99,6 @@ public class RoadNetwork {
 //                        coords.get(coords.indexOf(v)).setPrev(u);
                         v.setPrev(u);
                     }
-//                }
                 }
             }
         }
