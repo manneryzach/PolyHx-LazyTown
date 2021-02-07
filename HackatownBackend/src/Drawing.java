@@ -16,7 +16,7 @@ public class Drawing extends Canvas {
         canvas.setSize(1920, 1080);
         frame.add(canvas);
         frame.pack();
-        frame.setVisible(true);
+        //frame.setVisible(true);
     }
 
     // Draws the map of montreal
