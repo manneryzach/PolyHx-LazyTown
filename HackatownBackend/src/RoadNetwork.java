@@ -96,6 +96,16 @@ public class RoadNetwork {
         return new ArrayList<>(route);
     }
 
+    public ArrayList<Point> shortestPathHeap(Point coordA, Point coordB) {
+        ArrayList<Point> coords = new ArrayList<>(roads.keySet());
+
+        for (int i = 1; i < coords.size() / 2 ; i++) {
+
+        }
+
+        return null;
+    }
+
     private class Node implements Comparable {
         private Double dist;
         private Node prev;
