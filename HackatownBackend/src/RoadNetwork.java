@@ -32,6 +32,23 @@ public class RoadNetwork {
         return sortedCoordinates;
     }
 
+    public MinHeapify(ArrayList<Point> points, int i){
+        int l = points.get(2*i);
+        int r = points.get(2*i+1);
+        int n = points.size();
+        int smallest = 0;
+        if (l <= n && points.get(l)>points.get(i))
+            smallest = i;
+        else
+            smallest = l;
+        if (r <= n && points.get(r)<points.get(smallest))
+            smallest = r;
+        if (smallest != i){
+            Sorting.swap(i, smallest);
+            MinHeapify(A, smallest);
+        }
+    }
+
     /**
      * Computes the shortest weighted path from one road intersection to another using Dijkstra's algorithm.
      * The weight of each road is calculated with respect its the speed.
