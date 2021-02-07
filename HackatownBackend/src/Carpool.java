@@ -68,6 +68,15 @@ public class Carpool {
         return map.getSortedCoordinates().get(m);
     }
 
+
+//    function findPairs
+//
+//    for drivers in P1:
+//          choose driver
+//          delete P1 in all other drivers
+//          return findPairs(next driver)
+//
+
     // Pruning process
     private ArrayList<UserPair> getPossibleCombinations(ArrayList<Integer> userIDs) {
         // Separating drivers and passengers IDs

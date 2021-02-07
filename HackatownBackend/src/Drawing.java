@@ -41,8 +41,8 @@ public class Drawing extends Canvas {
             }
         }
 
-        Iterator iter = map.shortestPath(new Point(-73.6199267684401, 45.4690026138368),
-                new Point(-73.6311292347247, 45.4522425084274)).iterator();
+        Iterator iter = map.shortestPath(new Point(-73.609972256471, 45.4951631616262),
+                new Point(-73.635706042207, 45.4661593455988)).iterator();
         Point p0 = (Point) iter.next();
         Point p1 = (Point) iter.next();
 
