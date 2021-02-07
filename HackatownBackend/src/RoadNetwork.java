@@ -37,13 +37,13 @@ public class RoadNetwork {
         int r = 2 * i + 1;
         int n = points.size();
         int smallest;
-        if (l <= n && points.get(l) != null && points.get(l).getDist() > points.get(i).getDist())
-            smallest = i;
-        else
+        if (l < n && points.get(l).getDist() < points.get(i).getDist())
             smallest = l;
-        if (r <= n && points.get(r) != null && points.get(r).getDist() < points.get(smallest).getDist())
+        else
+            smallest = i;
+        if (r < n && points.get(r).getDist() < points.get(smallest).getDist())
             smallest = r;
-        if (smallest != i && points.get(i) != null) {
+        if (smallest != i) {
             Sorting.swap(points, i, smallest);
             MinHeapify(points, smallest);
         }
@@ -146,7 +146,14 @@ public class RoadNetwork {
         }
 
 
-        return null;
+        LinkedList<Point> route = new LinkedList<>();
+        Point u = coordB;
+        while (u.getPrev() != null && !u.equals(coordA)) {
+            route.addFirst(u);
+            u = u.getPrev();
+        }
+
+        return new ArrayList<>(route);
     }
 
     private class Node implements Comparable {
