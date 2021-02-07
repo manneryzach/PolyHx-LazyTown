@@ -23,7 +23,13 @@ public class Drawing extends Canvas {
     public void paint(Graphics g) {
 
         Graphics2D g2 = (Graphics2D) g;
-        RoadNetwork map = new RoadNetwork("./data/routes.json");
+        Carpool carCool = null;
+        try {
+            carCool = new Carpool("./data/routes.json");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        RoadNetwork map = carCool.getMap();
         ArrayList<DataTypes.Point> coords = map.getSortedCoordinates();
 
         // Draw each road on the map. A road segment is represented by a line (p0, p1)
@@ -44,8 +50,8 @@ public class Drawing extends Canvas {
         Point A = null;
         Point B = null;
         try {
-            A = (new Carpool("./data/routes.json")).findClosestVertex(new Point(-73.625872, 45.465371));
-            B = (new Carpool("./data/routes.json")).findClosestVertex(new Point(-73.629807, 45.477223));
+            A = carCool.findClosestVertex(new Point(-73.625872, 45.465371));
+            B = carCool.findClosestVertex(new Point(-73.629807, 45.477223));
         } catch (Exception e) {
             e.printStackTrace();
         }

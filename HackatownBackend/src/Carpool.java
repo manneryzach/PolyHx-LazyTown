@@ -30,6 +30,10 @@ public class Carpool {
         return this.users;
     }
 
+    public RoadNetwork getMap() {
+        return map;
+    }
+
     // Custom methods
     public UserPair findMatches() {
         return findMatches(new ArrayList<Integer>(users.keySet()));

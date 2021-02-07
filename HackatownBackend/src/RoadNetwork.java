@@ -67,7 +67,6 @@ public class RoadNetwork {
         for (Point p : roads.keySet())
             coords.add(p);
 
-        int index = coords.indexOf(coordA);
         coords.get(coords.indexOf(coordA)).setDist(0.);
         coordA.setDist(0.);
         System.out.println("Coord A: " + coords.get(coords.indexOf(coordA)));
