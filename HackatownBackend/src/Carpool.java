@@ -3,6 +3,7 @@ import DataTypes.Road;
 import DataTypes.User;
 import DataTypes.UserPair;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Carpool {
@@ -39,31 +40,36 @@ public class Carpool {
 
         ArrayList<UserPair> pairs = getPossibleCombinations(userIDs);
 
-        ArrayList<int> driverIDs = new ArrayList<>();
-        ArrayList<int> passengerIDs = new ArrayList<>();
+        ArrayList<Integer> driverIDs = new ArrayList<>();
+        ArrayList<Integer> passengerIDs = new ArrayList<>();
 
-        HashMap<int, ArrayList<Integer>> driver_passengers = new HashMap<>();
-        HashMap<int, ArrayList<Integer>> passenger_drivers = new HashMap<>();
+        HashMap<Integer, ArrayList<Integer>> driver_passengers = new HashMap<>();
+        HashMap<Integer, ArrayList<Integer>> passenger_drivers = new HashMap<>();
 
         for (UserPair pair : pairs){
             if (!driverIDs.contains(pair.driverID))
-                driverIDs.add(pair.driverID)
-            if (!driver_passengers.containsKey(pair.driverID)){
+                driverIDs.add(pair.driverID);
+            if (!driver_passengers.containsKey(pair.driverID))
                 driver_passengers.put(pair.driverID, new ArrayList<>(Arrays.asList(pair.passengerID)));
-            }else{
-                driver_passengers.get(pair.driverID).add(pair.passengerID);
+            else driver_passengers.get(pair.driverID).add(pair.passengerID);
+
+            if (!passengerIDs.contains(pair.passengerID)) passengerIDs.add(pair.passengerID);
+            if (!passenger_drivers.containsKey(pair.passengerID)) {
+                passenger_drivers.put(pair.passengerID, new ArrayList<>());
             }
-            if (!passengerIDs.contains(pair.passengerID))
-                passengerIDs.add(pair.passengerID);
-            if (!passenger_drivers.containsKey(pair.passengerID)){
-                passenger_drivers.put(pair.passengerID, new ArrayList<>(Array.asList(pair.driverID)));
-            }else{
-                passenger_drivers.get(pair.passengerID).add(pair.driverID)
-            }
+            passenger_drivers.get(pair.passengerID).add(pair.driverID);
+
         }
 
-        for (int i : passenger_drivers.keySet()){
-            //
+        for (int passenger : passenger_drivers.keySet()){
+            ArrayList<Integer> drivers = passenger_drivers.get(passenger);
+            // Pop last
+            Integer driver = drivers.get(drivers.size() - 1);
+            drivers.remove(drivers.size() - 1);
+            for (int passenger2 : driver_passengers.get(driver)) {
+                passenger_drivers.get(passenger2).remove(driver);
+            }
+
         }
         return null;
     }
