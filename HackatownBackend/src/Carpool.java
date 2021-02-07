@@ -31,7 +31,7 @@ public class Carpool {
 
     // Custom methods
     public UserPair findMatches() {
-        return findMatches(new ArrayList<>(users.keySet()));
+        return findMatches(new ArrayList<Integer>(users.keySet()));
     }
 
     public UserPair findMatches(ArrayList<Integer> userIDs) {

@@ -43,8 +43,10 @@ public class Drawing extends Canvas {
         }
 
         Point A = null;
+        Point B = null;
         try {
             A = (new Carpool("./data/routes.json")).findClosestVertex(new Point(-73.625872, 45.465371));
+            B = (new Carpool("./data/routes.json")).findClosestVertex(new Point(-73.629807, 45.477223));
         } catch (Exception e) {
             e.printStackTrace();
         }
