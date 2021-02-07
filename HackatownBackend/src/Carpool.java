@@ -248,7 +248,7 @@ public class Carpool {
         for (int i=0; i<(route.size()-2);i++){
             ArrayList<Road> possible_roads = map.getRoads(route.get(i));
             for (Road possible_road : possible_roads){
-                if (possible_road.getNextPoint().equals(route.get(i+1))){
+                if (possible_road.getNextPoint().compareTo(route.get(i+1)) == 0){
                     speed = possible_road.getRoadSpeed();
                     break;
                 }
