@@ -32,9 +32,9 @@ public class RoadNetwork {
         return sortedCoordinates;
     }
 
-    public static void MinHeapify(ArrayList<Point> points, int i){
-        int l = 2*i;
-        int r = 2*i+1;
+    public static void MinHeapify(ArrayList<Point> points, int i) {
+        int l = 2 * i;
+        int r = 2 * i + 1;
         int n = points.size();
         int smallest;
         if (l <= n && points.get(l) != null && points.get(l).getDist() > points.get(i).getDist())
@@ -53,12 +53,13 @@ public class RoadNetwork {
     /**
      * Computes the shortest weighted path from one road intersection to another using Dijkstra's algorithm.
      * The weight of each road is calculated with respect its the speed.
+     *
      * @param coordA Starting point
      * @param coordB End point
      * @return A sequence of intersection representing the optimal route.
-     * **/
+     **/
     public ArrayList<Point> shortestPathNoHeap(Point coordA, Point coordB) {
-        if(!roads.containsKey(coordA) || !roads.containsKey(coordB))
+        if (!roads.containsKey(coordA) || !roads.containsKey(coordB))
             throw new IllegalArgumentException("Coordinates must be intersections on the map");
 
         PriorityQueue<Node> vertices = new PriorityQueue<>();
@@ -118,7 +119,7 @@ public class RoadNetwork {
         ArrayList<Point> coords = new ArrayList<>(roads.keySet());
 
         // Heap-ify array
-        for (int i = 1; i < coords.size() / 2 ; i++) MinHeapify(coords, i);
+        for (int i = 1; i < coords.size() / 2; i++) MinHeapify(coords, i);
 
         while (!coords.isEmpty()) {
             // Remove point u from heap (slow but can be faster using avl)
@@ -143,8 +144,6 @@ public class RoadNetwork {
                 }
             }
         }
-
-
 
 
         return null;
