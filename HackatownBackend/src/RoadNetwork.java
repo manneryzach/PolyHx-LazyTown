@@ -73,14 +73,12 @@ public class RoadNetwork {
 
         System.out.println("Coord A: " + coords.get(coords.indexOf(p0)));
 
-        Point endCoords = new Point();
 
         while (!coords.isEmpty()) {
             Point u = findMin(coords);
             coords.remove(u);
 
             if (u == p1) {
-                endCoords = u;
                 System.out.println("Found node!");
                 break;
             }
@@ -94,12 +92,14 @@ public class RoadNetwork {
                     Double alt = u.getDist() + outRoad.getWeight();
 
                     if (alt < v.getDist()) {
-//                        coords.get(coords.indexOf(v)).setDist(alt);
                         v.setDist(alt);
-//                        coords.get(coords.indexOf(v)).setPrev(u);
                         v.setPrev(u);
                     }
                 }
+//                if (v == p1) {
+//                    System.out.println("Found node!");
+//                    break;
+//                }
             }
         }
 
@@ -114,8 +114,6 @@ public class RoadNetwork {
             }
             System.out.println(new ArrayList<>(route));
             return new ArrayList<>(route);
-
-
     }
 
     public ArrayList<Point> shortestPathHeap(Point coordA, Point coordB) {
@@ -207,13 +205,12 @@ public class RoadNetwork {
 
     private Point findMin(ArrayList<Point> coords) {
         Point min = coords.get(0);
-//        min.setDist(-1.);
 
         for (Point p : coords) {
             if (p.getDist() < min.getDist())
                 min = p;
-//            else System.out.println(p + " is bigger than " + min);
         }
+        System.out.println("Min: " + min);
         return min;
     }
 
