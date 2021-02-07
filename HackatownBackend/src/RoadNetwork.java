@@ -32,7 +32,7 @@ public class RoadNetwork {
         return sortedCoordinates;
     }
 
-    public void MinHeapify(ArrayList<Point> points, int i){
+    public static void MinHeapify(ArrayList<Point> points, int i){
         int l = 2*i;
         int r = 2*i+1;
         int n = points.size();
@@ -43,10 +43,11 @@ public class RoadNetwork {
             smallest = l;
         if (r <= n && points.get(r).getDist() < points.get(smallest).getDist())
             smallest = r;
-        if (smallest != i){
+        if (smallest != i) {
             Sorting.swap(points, i, smallest);
             MinHeapify(points, smallest);
         }
+
     }
 
     /**
