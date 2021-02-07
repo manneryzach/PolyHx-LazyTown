@@ -75,8 +75,10 @@ public class Carpool {
         return null;
     }
 
-    public ArrayList<UserPair> findMatches(HashMap<Integer, ArrayList<Integer>> driver_passengers, HashMap<Integer, ArrayList<Integer>> passenger_drivers){
-        ArrayList<UserPair> pairs = new ArrayList<>();
+    public ArrayList<ArrayList<UserPair>> findMatches(HashMap<Integer, ArrayList<Integer>> driver_passengers,
+                                                      HashMap<Integer, ArrayList<Integer>> passenger_drivers,
+                                                      ArrayList<UserPair> curCombo){
+        ArrayList<ArrayList<UserPair>> pairCombos = new ArrayList<>();
         // Base Case
         if (passenger_drivers.keySet().size() != 1){
             for (int passenger : passenger_drivers.keySet()){
@@ -84,17 +86,25 @@ public class Carpool {
                 // Pop last
                 Integer driver = drivers.get(drivers.size() - 1);
                 drivers.remove(drivers.size() - 1);
+
+                ArrayList<UserPair> nextCombo = (ArrayList<UserPair>) curCombo.clone();
+                nextCombo.add(new UserPair(users.get(passenger), users.get(driver), passenger, driver));
+
                 for (int passenger2 : driver_passengers.get(driver))
                     passenger_drivers.get(passenger2).remove(driver);
 
-                pairs.addAll(findMatches(driver_passengers, passenger_drivers));
+                pairCombos.addAll(findMatches(driver_passengers, passenger_drivers, nextCombo));
             }
         }else{
             for (int passenger : passenger_drivers.keySet()){
-                //
+                for (int driver : passenger_drivers.get(passenger)) {
+                    ArrayList<UserPair> nextCombo = (ArrayList<UserPair>) curCombo.clone();
+                    nextCombo.add(new UserPair(users.get(passenger), users.get(driver), passenger, driver));
+                    pairCombos.add(nextCombo);
+                }
             }
         }
-        return pairs;
+        return pairCombos;
     }
 
 

@@ -9,6 +9,7 @@ public class UserPair {
     public User driver;
     public ArrayList<Point> route;
     public double time_score;
+    public UserPair parent;
 
     public UserPair(User passenger, User driver, int passengerID, int driverID, ArrayList<Point> route, double time_score) {
         this.passenger = passenger;
