@@ -58,77 +58,70 @@ public class RoadNetwork {
      * @param coordB End point
      * @return A sequence of intersection representing the optimal route.
      **/
-    public ArrayList<Point> shortestPathNoHeap(Point coordA, Point coordB) {
+    public ArrayList<Point> shortestPath(Point coordA, Point coordB) {
         if (!roads.containsKey(coordA) || !roads.containsKey(coordB))
             throw new IllegalArgumentException("Coordinates must be intersections on the map");
 
-        PriorityQueue<Node> vertices = new PriorityQueue<>();
-        HashMap<Point, Node> pointDict = new HashMap<>();
+        coordA.setDist(0.);
+        ArrayList<Point> coords = new ArrayList<>(roads.keySet());
+        int index = coords.indexOf(coordA);
+        coords.get(coords.indexOf(coordA)).setDist(0.);
 
-        for (Point v : roads.keySet())
-            if (!v.equals(coordA)) {
-                Node node = new Node(v);
-                vertices.add(node);
-                pointDict.put(v, node);
+        System.out.println("Coord A: " + coords.get(coords.indexOf(coordA)));
+        Point endCoords = new Point();
+
+        while (!coords.isEmpty()) {
+            Point u = findMin(coords);
+            coords.remove(u);
+
+            if (u.equals(coordB)) {
+                endCoords = u;
+                System.out.println("Found node!");
+                break;
             }
 
+            for (Road outRoad : roads.get(u)) {
+                // Only visit new nodes
+                Point v = outRoad.getNextPoint();
+                if (coords.contains(v)) {
+                    Double alt = u.getDist() + outRoad.getWeight();
 
-        Node temp = new Node(coordA);
-        temp.setDist(0.0);
-        pointDict.put(coordA, temp);
-        vertices.add(temp);
-
-        //        for (Node u : vertices) {
-//            if (u.equals(coordA)) break;
-//
-//            for (Road outRoad : roads.get(u)) {
-//                Double alt = u.getDist() + outRoad.getWeight();
-//                if (alt < outRoad.getNextPoint().getDist()) {
-//                    outRoad.getNextPoint().setDist(alt);
-//                    outRoad.getNextPoint().setPrev(u);
-//                }
-//        }
-
-        while (!vertices.isEmpty()) {
-            Node u = vertices.poll();
-
-            vertices.remove(u);
-            if (u.p.equals(coordB)) break;
-
-            for (Road outRoad : roads.get(u.p)) {
-                Double alt = u.getDist() + outRoad.getWeight();
-
-                if (alt < pointDict.get(outRoad.getNextPoint()).getDist()) {
-                    pointDict.get(outRoad.getNextPoint()).setDist(alt);
-                    pointDict.get(outRoad.getNextPoint()).setPrev(u);
+                    if (alt < v.getDist()) {
+                        v.setDist(alt);
+                        v.setPrev(u);
+                    }
                 }
             }
         }
 
         LinkedList<Point> route = new LinkedList<>();
-        Node u = pointDict.get(coordB);
-        while (u.getPrev() != null && !u.p.equals(coordA)) {
-            route.addFirst(u.p);
-            u = u.getPrev();
+        Point u = endCoords;
+        if (u.getPrev() != null || u.equals(coordB)) {
+            while (u != null) {
+                route.addFirst(u);
+                u = u.getPrev();
+            }
         }
-
+        System.out.println(new ArrayList<>(route));
         return new ArrayList<>(route);
+
     }
 
-    public ArrayList<Point> shortestPath(Point coordA, Point coordB) {
+    public ArrayList<Point> shortestPathHeap(Point coordA, Point coordB) {
         if (!roads.containsKey(coordA) || !roads.containsKey(coordB))
             throw new IllegalArgumentException("Coordinates must be intersections on the map");
 
 
         System.out.println("finding shortest path");
-        ArrayList<Point> coords = new ArrayList<>();
-
+        coordA.setDist(0.);
         // coords.add(new Point());
-        coords.addAll(roads.keySet());
-        Sorting.swap(coords, 1, coords.indexOf(coordA));
+        ArrayList<Point> coords = new ArrayList<>(roads.keySet());
+        int index = coords.indexOf(coordA);
         // Set all vertices dist to infty
+        coords.get(coords.indexOf(coordA)).setDist(0.);
 
-        coords.get(1).setDist(0.);
+        System.out.println("Coord A: " + coords.get(coords.indexOf(coordA)));
+//        coords.get(1).setDist(0.);
         Point endCoords = new Point();
 
         // Heap-ify array
@@ -146,10 +139,10 @@ public class RoadNetwork {
 
             if (u.equals(coordB)) {
                 endCoords = u;
+                System.out.println("Found node!");
                 break;
             }
 
-            if(roads.get(u) != null) {
                 for (Road outRoad : roads.get(u)) {
                     // Only visit new nodes
                     Point v = outRoad.getNextPoint();
@@ -160,10 +153,9 @@ public class RoadNetwork {
                             v.setDist(alt);
                             v.setPrev(u);
                         }
-                        System.out.println(v);
+                        // System.out.println(v);
                     }
                 }
-            }
             //System.out.println(coords.size());
         }
 
@@ -183,12 +175,13 @@ public class RoadNetwork {
     }
 
     private Point findMin(ArrayList<Point> coords) {
-        Point min = new Point();
-        min.setDist(-1.);
+        Point min = coords.get(0);
+//        min.setDist(-1.);
 
         for (Point p : coords) {
-            if (min.getDist() == -1 ||  p.getDist() < min.getDist())
+            if (p.getDist() < min.getDist())
                 min = p;
+//            else System.out.println(p + " is bigger than " + min);
         }
         return min;
     }
