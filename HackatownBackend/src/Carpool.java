@@ -34,8 +34,11 @@ public class Carpool {
         return findMatches(new ArrayList<>(users.keySet()));
     }
 
-    public UserPair findMatches(ArrayList<UserPair> pairs) {
+    public UserPair findMatches(ArrayList<Integer> userIDs) {
         // TODO Fill in code for findMatches
+
+        ArrayList<UserPair> pairs = getPossibleCombinations(userIDs);
+
         ArrayList<int> driverIDs = new ArrayList<>();
         ArrayList<int> passengerIDs = new ArrayList<>();
 
@@ -43,14 +46,24 @@ public class Carpool {
         HashMap<int, ArrayList<Integer>> passenger_drivers = new HashMap<>();
 
         for (UserPair pair : pairs){
-            driverIDs.add(pair.driverID);
+            if (!driverIDs.contains(pair.driverID))
+                driverIDs.add(pair.driverID)
             if (!driver_passengers.containsKey(pair.driverID)){
-                driver_passengers.put(pairs.driverID, new ArrayList<>(Arrays.tolist(pair.passengerID)));
-            // }else if (){
-                // driver_passen
+                driver_passengers.put(pair.driverID, new ArrayList<>(Arrays.asList(pair.passengerID)));
+            }else{
+                driver_passengers.get(pair.driverID).add(pair.passengerID);
             }
-            passengerIDs.add(pair.passengerID);
+            if (!passengerIDs.contains(pair.passengerID))
+                passengerIDs.add(pair.passengerID);
+            if (!passenger_drivers.containsKey(pair.passengerID)){
+                passenger_drivers.put(pair.passengerID, new ArrayList<>(Array.asList(pair.driverID)));
+            }else{
+                passenger_drivers.get(pair.passengerID).add(pair.driverID)
+            }
+        }
 
+        for (int i : passenger_drivers.keySet()){
+            //
         }
         return null;
     }
