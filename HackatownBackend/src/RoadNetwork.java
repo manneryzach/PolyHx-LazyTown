@@ -44,13 +44,20 @@ public class RoadNetwork {
             throw new IllegalArgumentException("Coordinates must be intersections on the map");
 
         PriorityQueue<Node> vertices = new PriorityQueue<>();
+        HashMap<Point, Node> pointDict = new HashMap<>();
 
         for (Point v : roads.keySet())
-            if (!v.equals(coordA))
-                vertices.add(new Node(v));
+            if (!v.equals(coordA)) {
+                Node node = new Node(v);
+                vertices.add(node);
+                pointDict.put(v, node);
+            }
 
 
-        coordA.setDist(0.0);
+        Node temp = new Node(coordA);
+        temp.setDist(0.0);
+        pointDict.put(coordA, temp);
+        vertices.add(temp);
 
 //        for (Node u : vertices) {
 //            if (u.equals(coordA)) break;
@@ -71,31 +78,22 @@ public class RoadNetwork {
 
             for (Road outRoad : roads.get(u.p)) {
                 Double alt = u.getDist() + outRoad.getWeight();
-                if (alt < outRoad.getNextPoint().getDist()) {
-                    outRoad.getNextPoint().setDist(alt);
-                    outRoad.getNextPoint().setPrev(u);
+
+                if (alt < pointDict.get(outRoad.getNextPoint()).getDist()) {
+                    pointDict.get(outRoad.getNextPoint()).setDist(alt);
+                    pointDict.get(outRoad.getNextPoint()).setPrev(u);
                 }
             }
         }
 
         LinkedList<Point> route = new LinkedList<>();
-        Point u = coordB;
-        while (u.getPrev() != null && u != coordA) {
-            route.addFirst(u);
+        Node u = pointDict.get(coordB);
+        while (u.getPrev() != null && !u.p.equals(coordA)) {
+            route.addFirst(u.p);
             u = u.getPrev();
         }
 
         return new ArrayList<>(route);
-    }
-
-    private Point findMin(ArrayList<Point> vertices) {
-        Point min = new Point(0., 0.);
-
-        for (Point v : vertices) {
-
-        }
-
-        return null;
     }
 
     private class Node implements Comparable {
