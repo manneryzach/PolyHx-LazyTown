@@ -62,12 +62,16 @@ public class RoadNetwork {
         if (!roads.containsKey(coordA) || !roads.containsKey(coordB))
             throw new IllegalArgumentException("Coordinates must be intersections on the map");
 
-        coordA.setDist(0.);
-        ArrayList<Point> coords = new ArrayList<>(roads.keySet());
+
+        ArrayList<Point> coords = new ArrayList<>();
+        for (Point p : roads.keySet())
+            coords.add(p);
+
         int index = coords.indexOf(coordA);
         coords.get(coords.indexOf(coordA)).setDist(0.);
-
+        coordA.setDist(0.);
         System.out.println("Coord A: " + coords.get(coords.indexOf(coordA)));
+
         Point endCoords = new Point();
 
         while (!coords.isEmpty()) {
@@ -87,7 +91,9 @@ public class RoadNetwork {
                     Double alt = u.getDist() + outRoad.getWeight();
 
                     if (alt < v.getDist()) {
+                        coords.get(coords.indexOf(v)).setDist(alt);
                         v.setDist(alt);
+                        coords.get(coords.indexOf(v)).setPrev(u);
                         v.setPrev(u);
                     }
                 }

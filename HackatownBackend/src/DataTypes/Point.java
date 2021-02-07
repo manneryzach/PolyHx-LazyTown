@@ -83,10 +83,7 @@ public class Point implements Comparable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return Objects.equals(x, point.x) && Objects.equals(y, point.y);
+        return this == o;
     }
 
     @Override

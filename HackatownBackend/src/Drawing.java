@@ -21,7 +21,6 @@ public class Drawing extends Canvas {
 
     // Draws the map of montreal
     public void paint(Graphics g) {
-        System.out.println("Drawing");
 
         Graphics2D g2 = (Graphics2D) g;
         RoadNetwork map = new RoadNetwork("./data/routes.json");
@@ -50,6 +49,9 @@ public class Drawing extends Canvas {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        System.out.println("Finding route from " + A + " to " + B);
+
         ArrayList<Point> route = map.shortestPath(A, B);
         Iterator iter = route.iterator();
         Point p0 = (Point) iter.next();
