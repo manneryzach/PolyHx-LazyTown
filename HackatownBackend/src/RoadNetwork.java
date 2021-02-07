@@ -33,19 +33,19 @@ public class RoadNetwork {
     }
 
     public void MinHeapify(ArrayList<Point> points, int i){
-        int l = points.get(2*i);
-        int r = points.get(2*i+1);
+        int l = 2*i;
+        int r = 2*i+1;
         int n = points.size();
-        int smallest = 0;
-        if (l <= n && points.get(l)>points.get(i))
+        int smallest;
+        if (l <= n && points.get(l).getDist() > points.get(i).getDist())
             smallest = i;
         else
             smallest = l;
-        if (r <= n && points.get(r)<points.get(smallest))
+        if (r <= n && points.get(r).getDist() < points.get(smallest).getDist())
             smallest = r;
         if (smallest != i){
-            Sorting.swap(i, smallest);
-            MinHeapify(A, smallest);
+            Sorting.swap(points, i, smallest);
+            MinHeapify(points, smallest);
         }
     }
 
