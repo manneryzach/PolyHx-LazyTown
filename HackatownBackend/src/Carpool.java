@@ -72,7 +72,7 @@ public class Carpool {
         return null;
     }
 
-    public UserPair findMatches(HashMap<Integer, ArrayList<Integer>> driver_passengers, HashMap<Integer, ArrayList<Integer>>){
+    public UserPair findMatches(HashMap<Integer, ArrayList<Integer>> driver_passengers, HashMap<Integer, ArrayList<Integer>> passenger_drivers){
         for (int passenger : passenger_drivers.keySet()){
             ArrayList<Integer> drivers = passenger_drivers.get(passenger);
             // Pop last
@@ -82,6 +82,7 @@ public class Carpool {
                 passenger_drivers.get(passenger2).remove(driver);
             }
         }
+        return null;
     }
 
 
