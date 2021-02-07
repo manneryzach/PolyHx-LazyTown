@@ -72,17 +72,21 @@ public class Carpool {
         return null;
     }
 
-    public UserPair findMatches(HashMap<Integer, ArrayList<Integer>> driver_passengers, HashMap<Integer, ArrayList<Integer>> passenger_drivers){
+    public ArrayList<UserPair> findMatches(HashMap<Integer, ArrayList<Integer>> driver_passengers, HashMap<Integer, ArrayList<Integer>> passenger_drivers){
+        ArrayList<UserPair> pairs = new ArrayList<>();
+        // Base Case
+
         for (int passenger : passenger_drivers.keySet()){
             ArrayList<Integer> drivers = passenger_drivers.get(passenger);
             // Pop last
             Integer driver = drivers.get(drivers.size() - 1);
             drivers.remove(drivers.size() - 1);
-            for (int passenger2 : driver_passengers.get(driver)) {
+            for (int passenger2 : driver_passengers.get(driver))
                 passenger_drivers.get(passenger2).remove(driver);
-            }
+
+            pairs.addAll(findMatches(driver_passengers, passenger_drivers));
         }
-        return null;
+        return pairs;
     }
 
 
