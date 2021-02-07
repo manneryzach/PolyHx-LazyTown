@@ -117,13 +117,30 @@ public class RoadNetwork {
         ArrayList<Point> coords = new ArrayList<>(roads.keySet());
 
         // Heap-ify array
-        for (int i = 1; i < coords.size() / 2 ; i++) {
-
-        }
+        for (int i = 1; i < coords.size() / 2 ; i++) MinHeapify(coords, i);
 
         while (!coords.isEmpty()) {
-            // Remove point u from heap
-            Point u =
+            // Remove point u from heap (slow but can be faster using avl)
+            Point u = coords.get(1);
+            // Swap last and remove u
+            coords.set(1, coords.get(coords.size() - 1));
+            coords.remove(coords.size() - 1);
+            MinHeapify(coords, 1);
+
+            if (u.equals(coordB)) break;
+
+            for (Road outRoad : roads.get(u)) {
+                // Only visit new nodes
+                Point v = outRoad.getNextPoint();
+                if (v.isVisited) continue;
+
+                Double alt = u.getDist() + outRoad.getWeight();
+
+                if (alt < outRoad.getNextPoint().getDist()) {
+                    v.setDist(alt);
+                    v.setPrev(u);
+                }
+            }
         }
 
 
