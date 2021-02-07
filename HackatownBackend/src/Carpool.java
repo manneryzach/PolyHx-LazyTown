@@ -30,7 +30,7 @@ public class Carpool {
         return findMatches(new ArrayList<>(users.keySet()));
     }
 
-    public UserPair findMatches(ArrayList<Integer> userIDs) {
+    public UserPair findMatches(ArrayList<UserPair> pairs) {
         // TODO Fill in code for findMatches
         return null;
     }
