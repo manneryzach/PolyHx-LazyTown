@@ -146,15 +146,13 @@ public class RoadNetwork {
             for (Road outRoad : roads.get(u)) {
                 // Only visit new nodes
                 Point v = outRoad.getNextPoint();
-                if (!v.isVisited) {
+                Double alt = u.getDist() + outRoad.getWeight();
 
-                    Double alt = u.getDist() + outRoad.getWeight();
-
-                    if (alt < outRoad.getNextPoint().getDist()) {
-                        v.setDist(alt);
-                        v.setPrev(u);
-                    }
+                if (alt < v.getDist()) {
+                    v.setDist(alt);
+                    v.setPrev(u);
                 }
+                System.out.println(v);
             }
         }
 
