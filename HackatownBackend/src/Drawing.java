@@ -42,7 +42,12 @@ public class Drawing extends Canvas {
             }
         }
 
-        Point A = Carpool.getClosestVertex
+        Point A = null;
+        try {
+            A = (new Carpool("./data/routes.json")).findClosestVertex(new Point(-73.625872, 45.465371));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ArrayList<Point> route = map.shortestPath(new Point(-73.625872, 45.465371),
                 new Point(-73.6114840710186, 45.4925527952078));
         Iterator iter = route.iterator();
