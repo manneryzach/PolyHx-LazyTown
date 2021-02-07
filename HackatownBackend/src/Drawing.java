@@ -50,15 +50,14 @@ public class Drawing extends Canvas {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ArrayList<Point> route = map.shortestPath(new Point(-73.625872, 45.465371),
-                new Point(-73.6114840710186, 45.4925527952078));
+        ArrayList<Point> route = map.shortestPath(A, B);
         Iterator iter = route.iterator();
         Point p0 = (Point) iter.next();
         Point p1 = (Point) iter.next();
 
         do {
             g2.setColor(new Color(0, 0, 255));
-
+            g2.setStroke(new BasicStroke(10));
 
             Point p0_trans = Point.transform(p0);
             Point p1_trans = Point.transform(p1);

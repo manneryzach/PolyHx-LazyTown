@@ -164,14 +164,13 @@ public class RoadNetwork {
                     }
                 }
             }
-            System.out.println(coords.size());
+            //System.out.println(coords.size());
         }
 
         System.out.println("Backtracking...");
 
         LinkedList<Point> route = new LinkedList<>();
         Point u = endCoords;
-        System.out.println(endCoords);
         if (u.getPrev() != null || u.equals(coordB)) {
             while (u != null) {
                 route.addFirst(u);
